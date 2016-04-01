@@ -11,4 +11,8 @@
       // Testaa koodiasi täällä
       echo 'Hello World!';
     }
+    
+    public static function etusivu() {
+        View::make('suunnitelmat/etusivu.html');
+    }
   }
