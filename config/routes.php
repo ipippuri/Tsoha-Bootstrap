@@ -9,5 +9,21 @@
   });
   
   $routes->get('/etusivu', function() {
-  HelloWorldController::etusivu();
+    HelloWorldController::etusivu();
+  });
+  
+  $routes->get('/kohteidenlistaus', function() {
+    HelloWorldController::kohteidenListaus();
+  });
+  
+    $routes->get('/kohteenhistoria', function() {
+  HelloWorldController::kohteenHistoria();
+  });
+  
+  $routes->get('/tutkijantoiminta', function() {
+    HelloWorldController::tutkijanToiminta();
+  });
+  
+  $routes->get('/kohteenesittely', function() {
+    HelloWorldController::kohteenEsittely();
   });
