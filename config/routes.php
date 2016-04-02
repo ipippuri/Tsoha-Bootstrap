@@ -27,3 +27,7 @@
   $routes->get('/kohteenesittely', function() {
     HelloWorldController::kohteenEsittely();
   });
+  
+  $routes->get('/naytteenesittely', function() {
+  HelloWorldController::naytteenEsittely();
+  });
