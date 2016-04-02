@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h1> Tutkimuksen esittelysivu </h1>
+
+    <p> <strong> Päivämäärä: </strong> 21.12.2013 </p>
+    <p> <strong> Aistinvarainen tieto </strong> </br>
+        Kuvaus aistinvaraisesta tiedosta. 
+    </p>
+    <p> <strong> Mittaustieto </strong> </br>
+        Mitattu tieto
+    </p>
+    <br>
+    
+    <h3>Näytteet</h3> <br>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th> Näytteen id </th>
+                <th> Näytteen nimi </th>
+                <th> Näytteenottopaikka (id) </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td> 123 </td>
+                <td> Bakteeri </td>
+                <td> 656765 </td>
+            </tr>
+            <tr>
+                <td> 543 </td>
+                <td> Suolapitoisuus </td>
+                <td> 2635 </td>
+            </tr>
+        </tbody>
+
+
+    </table>
+
+{% endblock %}

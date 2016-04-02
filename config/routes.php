@@ -29,5 +29,9 @@
   });
   
   $routes->get('/naytteenesittely', function() {
-  HelloWorldController::naytteenEsittely();
+    HelloWorldController::naytteenEsittely();
+  });
+  
+  $routes->get('/tutkimuksenesittely', function() {
+      HelloWorldController::tutkimuksenEsittely();
   });

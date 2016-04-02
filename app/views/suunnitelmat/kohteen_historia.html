@@ -1,11 +1,36 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div> kohteen historia </div>
-    </body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+
+    <h1> Kohteen historia </h1>
+
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th> Tutkimuksen id </th>
+                <th> Päivämäärä </th>
+                <th> Havainnot </th>
+                <th> Mitattu tieto </th>
+                <th> Näytteiden lukumäärä </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td> 34 </td>
+                <td> 11.03.2013 </td>
+                <td> Havainto sinilevätilanteesta </td>
+                <td> 876 </td>
+                <td> 3</td>
+            </tr>
+            <tr>
+                <td> 4 </td>
+                <td> 30.11.2013 </td>
+                <td> Sään kuvaus</td>
+                <td> 12 </td>
+                <td> 1 </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+{% endblock %}

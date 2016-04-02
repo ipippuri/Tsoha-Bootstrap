@@ -1,16 +1,35 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <title> 
-            Tutkimuskohteet 
-        </title>
-    </head>
-    
-    
-    <body>
-        <div> kohteet </div>
-    </body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+
+    <h1> Tutkimuskohteet </h1>
+    <a href="#" class="btn btn-default"> Lisää kohde </a> <br>
+    <br>
+
+    <table class="table table-striped table-bordered">
+	<thead>
+		<tr>
+			<th> Nimi </th>
+			<th> Paikkakunta </th>
+			<th> Viimeisin tutkimus </th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr>
+			<td> Vesistö </td>
+			<td> Paikkakunta </td>
+			<td> 12.4.2013 </td>
+		</tr>
+		<tr>
+			<td> Järvi </td>
+			<td> Kunta </td>
+			<td> 01.02.2016 </td>
+		</tr>
+	</tbody>
+
+
+
+
+</table>
+
+{% endblock %}

@@ -1,11 +1,39 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div> esittely</div>
-    </body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+
+    <h1> Kohteen nimi </h1>
+    <a href="#" class="btn btn-default"> Muokkaa </a> <br>
+    <br>
+    <p> <strong> Paikkakunta:</strong> Paikkakunnan nimi </p>
+
+
+    <h3> Näytteidenottopaikat</h3>
+    <table class="table table-striped table-bordered">
+	<thead>
+            <tr>
+		<th> Id </th>
+		<th> Leveysaste </th>
+		<th> Pituusaste </th>
+		<th> Maamerkkitieto </th>
+		</tr>
+	</thead>
+
+            <tr>
+        	<td> 1 </td>
+        	<td> 34.222844 </td>
+                <td> 12.348746 </td>
+        	<td> Suuri kallio</td>
+            </tr>
+            <tr>
+		<td> 23 </td>
+		<td> 12.194824 </td>
+		<td> 52.61639 </td>
+		<td> Koivu </td>
+            </tr>
+    </table>
+
+<!-- Näytteidenottopaikkojen lisääminen, muokkaaminen, kohdteen muokkaaminen -->
+
+
+
+{% endblock %}

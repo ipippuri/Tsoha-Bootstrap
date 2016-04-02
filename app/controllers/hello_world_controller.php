@@ -35,4 +35,8 @@
     public static function naytteenEsittely() {
         View::make('suunnitelmat/naytteen_esittely.html');
     }
+    
+    public static function tutkimuksenEsittely() {
+        View::make('suunnitelmat/tutkimuksen_esittely.html');
+    }
   }
