@@ -1,8 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h1> Tutkimuksen esittelysivu: </h1>
-
+    <h1> Tutkimuksen esittelysivu </h1> 
+    
+    <a href="#" class="btn btn-default"> Muokkaa </a> 
+    <a href="#" class="btn btn-danger"> Poista </a> <br>
+    <br>
+    
+    <p> <strong> Tutkimuskohde: </strong> <a href="#"> Kohde </a> </p>
+    <p> <strong> Tutkija: </strong> <a href="#"> Tutkija </a> </p>
     <p> <strong> Päivämäärä: </strong> 21.12.2013 </p>
     <p> <strong> Aistinvarainen tieto </strong> </br>
         Kuvaus aistinvaraisesta tiedosta. 
@@ -24,18 +30,17 @@
 
         <tbody>
             <tr>
-                <td> 123 </td>
-                <td> Bakteeri </td>
+                <td> <a href="#"> 123 </a></td>
+                <td> Nimi </td>
                 <td> 656765 </td>
             </tr>
             <tr>
-                <td> 543 </td>
-                <td> Suolapitoisuus </td>
+                <td> <a href="#"> 543 </a></td>
+                <td> Nimi </td>
                 <td> 2635 </td>
             </tr>
         </tbody>
-
-
     </table>
 
+    
 {% endblock %}

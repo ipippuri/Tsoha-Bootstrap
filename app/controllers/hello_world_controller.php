@@ -20,10 +20,6 @@
         View::make('suunnitelmat/kohteiden_listaus.html');
     }
     
-    public static function kohteenHistoria() {
-        View::make('suunnitelmat/kohteen_historia.html');
-    }
-    
     public static function tutkijanToiminta() {
         View::make('suunnitelmat/tutkijan_toiminta.html');
     }
@@ -32,11 +28,24 @@
         View::make('suunnitelmat/kohteen_esittely.html');
     }
     
+    public static function tutkimuksenEsittely() {
+        View::make('suunnitelmat/tutkimuksen_esittely.html');
+    }
+        
     public static function naytteenEsittely() {
         View::make('suunnitelmat/naytteen_esittely.html');
     }
     
-    public static function tutkimuksenEsittely() {
-        View::make('suunnitelmat/tutkimuksen_esittely.html');
+    public static function kohteenMuokkaus(){
+        View::make('suunnitelmat/kohteen_muokkaus.html');
     }
+    
+    public static function tutkimuksenMuokkaus() {
+        View::make('suunnitelmat/tutkimuksen_muokkaus.html');
+    }
+    
+    public static function naytteenMuokkaus() {
+        View::make('suunnitelmat/naytteen_muokkaus.html');
+    }
+    
   }

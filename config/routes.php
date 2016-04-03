@@ -16,10 +16,6 @@
     HelloWorldController::kohteidenListaus();
   });
   
-    $routes->get('/kohteenhistoria', function() {
-  HelloWorldController::kohteenHistoria();
-  });
-  
   $routes->get('/tutkijantoiminta', function() {
     HelloWorldController::tutkijanToiminta();
   });
@@ -28,10 +24,23 @@
     HelloWorldController::kohteenEsittely();
   });
   
+  $routes->get('/tutkimuksenesittely', function() {
+      HelloWorldController::tutkimuksenEsittely();
+  });
+    
   $routes->get('/naytteenesittely', function() {
     HelloWorldController::naytteenEsittely();
   });
   
-  $routes->get('/tutkimuksenesittely', function() {
-      HelloWorldController::tutkimuksenEsittely();
+  $routes->get('/kohteenmuokkaus', function() {
+    HelloWorldController::kohteenMuokkaus();
   });
+  
+  $routes->get('/tutkimuksenmuokkaus', function() {
+    HelloWorldController::tutkimuksenMuokkaus();
+  });
+    
+  $routes->get('/naytteenmuokkaus', function() {
+    HelloWorldController::naytteenMuokkaus();
+  });
+  
