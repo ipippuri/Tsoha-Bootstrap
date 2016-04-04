@@ -1,19 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h1> Tutkimuksen esittelysivu </h1> 
+<h1> <a href="#">Kohde</a>: Tutkimus </h1> 
     
     <a href="#" class="btn btn-default"> Muokkaa </a> 
     <a href="#" class="btn btn-danger"> Poista </a> <br>
     <br>
     
-    <p> <strong> Tutkimuskohde: </strong> <a href="#"> Kohde </a> </p>
-    <p> <strong> Tutkija: </strong> <a href="#"> Tutkija </a> </p>
-    <p> <strong> Päivämäärä: </strong> 21.12.2013 </p>
-    <p> <strong> Aistinvarainen tieto </strong> </br>
+    <ul>
+        <li> <strong> Tutkija: </strong> <a href="#"> Tutkija </a> </li>
+        <li> <strong> Päivämäärä: </strong> 21.12.2013 </li>
+    </ul>
+    
+    <p> <strong> Aistinvarainen tieto </strong> <br>
         Kuvaus aistinvaraisesta tiedosta. 
     </p>
-    <p> <strong> Mittaustieto </strong> </br>
+    <p> <strong> Mittaustieto </strong> <br>
         Mitattu tieto
     </p>
     <br>
@@ -24,7 +26,6 @@
             <tr>
                 <th> Näytteen id </th>
                 <th> Näytteen nimi </th>
-                <th> Näytteenottopaikka (id) </th>
             </tr>
         </thead>
 
@@ -32,12 +33,10 @@
             <tr>
                 <td> <a href="#"> 123 </a></td>
                 <td> Nimi </td>
-                <td> 656765 </td>
             </tr>
             <tr>
                 <td> <a href="#"> 543 </a></td>
                 <td> Nimi </td>
-                <td> 2635 </td>
             </tr>
         </tbody>
     </table>

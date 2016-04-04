@@ -8,7 +8,7 @@ CREATE TABLE Tutkija(
 
 CREATE TABLE Kohde(
     kohdeid SERIAL PRIMARY KEY,
-    nimi varchar(50) UNIQUE NOT NULL,
+    nimi varchar(50) NOT NULL,
     paikkakunta varchar(50) NOT NULL
 );
 
