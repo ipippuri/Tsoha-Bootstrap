@@ -16,6 +16,10 @@
     HelloWorldController::kohteidenListaus();
   });
   
+  $routes->get('/tutkimustenlistaus', function() {
+  HelloWorldController::tutkimustenListaus();
+  });
+  
   $routes->get('/tutkijantoiminta', function() {
     HelloWorldController::tutkijanToiminta();
   });

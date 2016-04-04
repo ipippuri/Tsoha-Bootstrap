@@ -20,6 +20,10 @@
         View::make('suunnitelmat/kohteiden_listaus.html');
     }
     
+    public static function tutkimustenListaus() {
+        View::make('suunnitelmat/tutkimusten_listaus.html');
+    }
+
     public static function tutkijanToiminta() {
         View::make('suunnitelmat/tutkijan_toiminta.html');
     }
