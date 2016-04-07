@@ -4,7 +4,7 @@
 class Kohde extends BaseModel{
     public $kohdeid, $nimi, $paikkakunta;
         
-    public function __construct($attributes = null) {
+    public function __construct($attributes) {
         parent::__construct($attributes);
     }
     

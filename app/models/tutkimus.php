@@ -1,6 +1,6 @@
 <?php
 
-class Tutkimus {
+class Tutkimus extends BaseModel{
     public $tutkimusid, $kohdeid, $tutkijaid, $paivamaara, $aistivarainen_tieto, $mittaustieto;
     
     public function __construct($attributes) {
