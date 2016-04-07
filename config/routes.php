@@ -65,3 +65,8 @@
     KohdeController::show($kohdeid);
   });
   
+  
+  $routes->get('/tutkimus', function() {
+  TutkimusController::index();
+  });
+  

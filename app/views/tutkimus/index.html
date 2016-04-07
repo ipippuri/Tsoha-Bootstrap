@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h1> Tutkimukset </h1>
+    <br>
+
+    <table class="table table-striped table-bordered">
+	<thead>
+            <tr>
+                <th> Id </th>
+                <th> Kohde </th>
+                <th> Päivämäärä </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for tutkimus in tutkimukset %}
+            <tr>
+                <td> <a href="#"> {{tutkimus.tutkimusid}} </a></td>
+                <td> {{tutkimus.kohdeid}} </td>
+                <td> {{tutkimus.paivamaara}} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}
