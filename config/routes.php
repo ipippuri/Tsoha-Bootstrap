@@ -48,3 +48,20 @@
     HelloWorldController::naytteenMuokkaus();
   });
   
+
+  $routes->get('/kohde', function() {
+    KohdeController::index();
+  });
+  
+  $routes->post('/kohde', function() {
+    KohdeController::store();      
+  });
+  
+  $routes->get('/kohde/new', function() {
+    KohdeController::create();
+  });
+  
+  $routes->get('/kohde/:kohdeid', function($kohdeid) {
+    KohdeController::show($kohdeid);
+  });
+  

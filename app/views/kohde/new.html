@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h1> Lisää tutkimuskohde </h1>
+    
+    <form method="post" action="{{base_path}}/kohde">
+        <div class="form-group">
+            <label> Nimi </label>
+            <input name="nimi" class="form-control" type="text">
+        </div>
+    
+        <div class="form-group">
+            <label> Paikkakunta </label>
+            <input name="paikkakunta" class="form-control" type="text">
+        </div>
+    
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary"> Tallenna </button>
+            <a class="btn btn-default" href="{{base_path}}/kohde" role="button"> Peruuta </a>
+        </div>
+    </form>
+
+    
+{% endblock %}

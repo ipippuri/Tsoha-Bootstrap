@@ -9,6 +9,10 @@
 
     public static function sandbox(){
       // Testaa koodiasi täällä
+        $nuuksio = Kohde::find(1);
+        $kohteet = Kohde::all();
+        Kint::dump($kohteet);
+        Kint::dump($nuuksio);
       echo 'Hello World!';
     }
     

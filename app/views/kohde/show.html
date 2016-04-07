@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h1> {{kohde.nimi}} </h1>
+    <a href="#" class="btn btn-default"> Muokkaa </a> <br>
+    <br>
+    <p> <strong> Paikkakunta:</strong> {{kohde.paikkakunta}} </p>
+
+    
+    <h3> Kohteen historia </h3>
+    <a href="#" class="btn btn-default"> Lisää tutkimus </a> <br>
+    <br>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th> Tutkimuksen id </th>
+                <th> Päivämäärä </th>
+                <th> Näytteiden lukumäärä </th>
+                <th> Tutkija </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td> <a href="#"> 4 </a></td>
+                <td> 30.11.2013 </td>
+                <td> 1 </td>
+                <td><a href="#"> Tutkija </a></td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    
+{% endblock %}
