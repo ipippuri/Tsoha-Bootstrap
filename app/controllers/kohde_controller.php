@@ -1,5 +1,5 @@
 <?php
-
+    
 class KohdeController extends BaseController{
     public static function index() {
         $kohteet = Kohde::all();

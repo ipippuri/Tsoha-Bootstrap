@@ -1,6 +1,5 @@
 <?php
 
-
 class TutkimusController {
     public static function index() {
         $tutkimukset = Tutkimus::all();
