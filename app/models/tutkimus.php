@@ -20,16 +20,40 @@ class Tutkimus extends BaseModel{
         foreach ($rows as $row) {
             $tutkimukset[] = new Tutkimus(array(
                 'tutkimusid' => $row['tutkimusid'],
+                'kohteenNimi' => $row['nimi'],
+                'kohteenPaikkakunta' => $row['paikkakunta'],
+                'tutkijaid' => $row['tutkijaid'],
+                'paivamaara' => $row['paivamaara'],
+                'aistivarainen_tieto' => $row['aistivarainen_tieto'],
+                'mittaustieto' => $row['mittaustieto'],
+            ));
+        }
+        
+        return $tutkimukset;
+    }
+    
+    
+    public static function find($tutkimusid) {
+        $query = DB::connection()->prepare('SELECT * FROM Tutkimus LEFT JOIN Kohde '
+                . 'ON Kohde.kohdeid=Tutkimus.kohdeid WHERE tutkimusid = :id');
+        $query->execute(array('id' => $tutkimusid));
+        $row = $query->fetch();
+        
+        if($row) {
+            $tutkimus = new Tutkimus(array(
+                'tutkimusid' => $row['tutkimusid'],
                 'kohdeid' => $row['kohdeid'],
                 'kohteenNimi' => $row['nimi'],
                 'kohteenPaikkakunta' => $row['paikkakunta'],
                 'tutkijaid' => $row['tutkijaid'],
                 'paivamaara' => $row['paivamaara'],
                 'aistivarainen_tieto' => $row['aistivarainen_tieto'],
-                'mitattaustieto' => $row['mittaustieto'],
+                'mittaustieto' => $row['mittaustieto']
             ));
+            return $tutkimus;
         }
-        return $tutkimukset;
         
+        return null;
     }
+    
 }

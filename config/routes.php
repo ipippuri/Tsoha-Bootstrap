@@ -67,6 +67,11 @@
   
   
   $routes->get('/tutkimus', function() {
-  TutkimusController::index();
+    TutkimusController::index();
   });
+  
+  $routes->get('/tutkimus/:tutkimusid', function($tutkimusid) {
+    TutkimusController::show($tutkimusid);
+  });
+
   

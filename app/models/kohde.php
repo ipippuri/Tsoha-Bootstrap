@@ -1,7 +1,8 @@
 <?php
 
 class Kohde extends BaseModel{
-    public $kohdeid, $nimi, $paikkakunta, $viimeisinTutkimus;
+    public $kohdeid, $nimi, $paikkakunta, $viimeisinTutkimus,
+            $tutkimukset=array();
         
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -10,8 +11,8 @@ class Kohde extends BaseModel{
     
     public static function all(){
         $query = DB::connection()->prepare('SELECT * FROM Kohde LEFT JOIN 
-            (SELECT kohdeid, MAX(paivamaara) as viimeisin_tutkimus 
-            FROM Tutkimus GROUP BY kohdeid) Viimeisin ON Kohde.kohdeid=Viimeisin.kohdeid 
+            (SELECT kohdeid as id, MAX(paivamaara) as viimeisin_tutkimus 
+            FROM Tutkimus GROUP BY id) Viimeisin ON Kohde.kohdeid=Viimeisin.id 
             ORDER BY viimeisin_tutkimus DESC');
         $query->execute();
         $rows= $query->fetchAll();

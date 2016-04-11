@@ -25,9 +25,9 @@ class KohdeController extends BaseController{
             'nimi' => $params['nimi'],
             'paikkakunta' => $params['paikkakunta']
         ));
-        
+
         $kohde->save();
-        Redirect::to('/kohde/' . $kohde->kohdeid, array('message' => 'Kohde lisätty.'));
+        Redirect::to('/kohde/' . $kohde->kohdeid, array('message' => 'Kohde lisätty!'));
     }
     
 }

@@ -16,7 +16,7 @@
         <tbody>
             {% for tutkimus in tutkimukset %}
             <tr>
-                <td> <a href="#"> {{tutkimus.tutkimusid}} </a></td>
+                <td> <a href="{{base_path}}/tutkimus/{{tutkimus.tutkimusid}}"> {{tutkimus.tutkimusid}} </a></td>
                 <td> {{tutkimus.kohteenNimi}}, {{tutkimus.kohteenPaikkakunta}} </td>
                 <td> {{tutkimus.paivamaara}} </td>
             </tr>
