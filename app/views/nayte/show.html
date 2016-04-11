@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3> <a href="{{base_path}}/tutkimus/{{nayte.tutkimusid}}">Tutkimus {{nayte.tutkimusid}}</a>: {{nayte.nimi}} </h3>
+    
+    <a href="#" class="btn btn-default"> Muokkaa </a> 
+    <a href="#" class="btn btn-danger"> Poista </a> <br>
+    <br>
+    
+    <ul>
+        <li><strong> Näytteen id: </strong> {{nayte.nayteid}} </li> 
+        <li><strong> Tutkija: </strong> <a href="#"> {{nayte.tutkijaid}} </a> </li> 
+        <li><strong> Näytteenottopaikkan koordinaatit: </strong> 
+        60.25, 24.6
+        </li>
+        <li><strong> Näytteenottopaikkan maamerkkitieto: </strong> 
+        maamerkkitieto
+        </li>
+    </ul>
+    
+    <p> <strong> Kuvaus </strong> </br>
+        {{nayte.kuvaus}}
+    </p>
+    
+    <p> <strong> Analyysi </strong> </br>
+        {{nayte.analyysi}}
+    </p>
+
+    
+{% endblock %}

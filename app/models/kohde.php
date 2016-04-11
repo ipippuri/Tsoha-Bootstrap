@@ -41,11 +41,37 @@ class Kohde extends BaseModel{
                 'nimi' => $row['nimi'],
                 'paikkakunta' => $row['paikkakunta']
             ));
+            
             return $kohde;
         }
         
         return null;
     }
+    
+    public static function findWithTutkimukset($kohdeid) {
+        $kohde = Kohde::find($kohdeid);
+        
+        $query = DB::connection()->prepare('SELECT * FROM Tutkimus WHERE '
+            .'kohdeid= :kohdeid ORDER BY paivamaara DESC');
+        $query->execute(array('kohdeid' => $kohdeid ));
+        
+        $rows = $query->fetchAll();
+        $tutkimukset = array();
+        
+        foreach ($rows as $row) {
+            $tutkimukset[] = new Tutkimus(array(
+                'tutkimusid' => $row['tutkimusid'],
+                'tutkijaid' => $row['tutkijaid'],
+                'paivamaara' => $row['paivamaara'],
+                'aistivarainen_tieto' => $row['aistivarainen_tieto'],
+                'mittaustieto' => $row['mittaustieto'],
+            ));
+        }
+        
+        $kohde->tutkimukset = $tutkimukset;
+        return $kohde;
+    }
+
     
     public function save() {
         $query = DB::connection()->prepare('INSERT INTO Kohde (nimi, paikkakunta)'

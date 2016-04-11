@@ -70,8 +70,17 @@
     TutkimusController::index();
   });
   
+  $routes->get('/tutkimus/new', function() {
+    TutkimusController::create();
+  });
+  
   $routes->get('/tutkimus/:tutkimusid', function($tutkimusid) {
     TutkimusController::show($tutkimusid);
+  });
+  
+  
+  $routes->get('/nayte/:nayteid', function($nayteid) {
+    NayteController::show($nayteid);
   });
 
   

@@ -13,7 +13,7 @@ class KohdeController extends BaseController{
     
     
     public static function show($kohdeid) {
-        $kohde = Kohde::find($kohdeid);
+        $kohde = Kohde::findWithTutkimukset($kohdeid);
         View::make('/kohde/show.html', array('kohde' => $kohde));
     }
 

@@ -2,7 +2,7 @@
 
 class Tutkimus extends BaseModel{
     public $tutkimusid, $kohdeid, $kohteenNimi, $kohteenPaikkakunta, $tutkijaid, 
-            $paivamaara, $aistivarainen_tieto, $mittaustieto;
+            $paivamaara, $aistivarainen_tieto, $mittaustieto, $nayteet=array();
     
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -55,5 +55,30 @@ class Tutkimus extends BaseModel{
         
         return null;
     }
+    
+    public static function findWithNaytteet($tutkimusid) {
+        $tutkimus = Tutkimus::find($tutkimusid);
+        
+        $query = DB::connection()->prepare('SELECT * FROM Nayte WHERE '
+            .'tutkimusid= :tutkimusid');
+        $query->execute(array('tutkimusid' => $tutkimusid ));
+        
+        $rows = $query->fetchAll();
+        $naytteet = array();
+        
+        foreach ($rows as $row) {
+            $naytteet[] = new Nayte(array(
+                'nayteid' => $row['nayteid'],
+                'nimi' => $row['nimi'],
+                'tutkijaid' => $row['tutkijaid'],
+                'kuvaus' => $row['kuvaus'],
+                'analyysi' => $row['analyysi'],
+            ));
+        }
+        
+        $tutkimus->naytteet = $naytteet;
+        return $tutkimus;
+    }
+
     
 }

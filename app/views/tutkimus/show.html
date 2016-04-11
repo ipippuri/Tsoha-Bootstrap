@@ -31,10 +31,12 @@
         </thead>
 
         <tbody>
+            {% for nayte in tutkimus.naytteet %}
             <tr>
-                <td> <a href="#"> 123 </a></td>
-                <td> Nimi </td>
+                <td> <a href="{{base_path}}/nayte/{{nayte.nayteid}}"> {{nayte.nayteid}} </a></td>
+                <td> {{nayte.nimi}} </td>
             </tr>
+            {% endfor %}
         </tbody>
     </table>
 
