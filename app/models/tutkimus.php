@@ -59,7 +59,7 @@ class Tutkimus extends BaseModel{
     public static function findWithNaytteet($tutkimusid) {
         $tutkimus = Tutkimus::find($tutkimusid);
         
-        $query = DB::connection()->prepare('SELECT * FROM Nayte WHERE '
+        $query = DB::connection()->prepare('SELECT nayteid, nimi FROM Nayte WHERE '
             .'tutkimusid= :tutkimusid');
         $query->execute(array('tutkimusid' => $tutkimusid ));
         
@@ -70,9 +70,6 @@ class Tutkimus extends BaseModel{
             $naytteet[] = new Nayte(array(
                 'nayteid' => $row['nayteid'],
                 'nimi' => $row['nimi'],
-                'tutkijaid' => $row['tutkijaid'],
-                'kuvaus' => $row['kuvaus'],
-                'analyysi' => $row['analyysi'],
             ));
         }
         

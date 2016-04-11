@@ -8,7 +8,6 @@ class Kohde extends BaseModel{
         parent::__construct($attributes);
     }
     
-    
     public static function all(){
         $query = DB::connection()->prepare('SELECT * FROM Kohde LEFT JOIN 
             (SELECT kohdeid as id, MAX(paivamaara) as viimeisin_tutkimus 
@@ -29,6 +28,7 @@ class Kohde extends BaseModel{
         
         return $kohteet;  
     }
+
     
     public static function find($kohdeid) {
         $query = DB::connection()->prepare('SELECT * FROM Kohde WHERE kohdeid= :id LIMIT 1');
@@ -51,8 +51,8 @@ class Kohde extends BaseModel{
     public static function findWithTutkimukset($kohdeid) {
         $kohde = Kohde::find($kohdeid);
         
-        $query = DB::connection()->prepare('SELECT * FROM Tutkimus WHERE '
-            .'kohdeid= :kohdeid ORDER BY paivamaara DESC');
+        $query = DB::connection()->prepare('SELECT tutkimusid, tutkijaid, paivamaara '
+                . 'FROM Tutkimus WHERE kohdeid= :kohdeid ORDER BY paivamaara DESC');
         $query->execute(array('kohdeid' => $kohdeid ));
         
         $rows = $query->fetchAll();
@@ -63,8 +63,6 @@ class Kohde extends BaseModel{
                 'tutkimusid' => $row['tutkimusid'],
                 'tutkijaid' => $row['tutkijaid'],
                 'paivamaara' => $row['paivamaara'],
-                'aistivarainen_tieto' => $row['aistivarainen_tieto'],
-                'mittaustieto' => $row['mittaustieto'],
             ));
         }
         
@@ -72,7 +70,6 @@ class Kohde extends BaseModel{
         return $kohde;
     }
 
-    
     public function save() {
         $query = DB::connection()->prepare('INSERT INTO Kohde (nimi, paikkakunta)'
                 . 'VALUES (:nimi, :paikkakunta) RETURNING kohdeid');
