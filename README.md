@@ -10,13 +10,13 @@ Yleisiä linkkejä:
 Tutkimusaineiston keräys: [linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Tutkimusaineston_kerays.html) 
 
 
-## Kirjatuminen
+## Kirjautuminen
 Järjestelmään voi kirjautua tunnuksilla:
-        Käyttäjätunnus: tutkija
-        Salasana: salasana
+*  Käyttäjätunnus: tutkija
+*  Salasana: salasana
 
-        Käyttäjätunnus: tutkija2
-        Salasana: abc123
+*  Käyttäjätunnus: tutkija2
+*   Salasana: abc123
 
 
 
