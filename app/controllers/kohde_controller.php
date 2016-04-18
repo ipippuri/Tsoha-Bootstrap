@@ -67,7 +67,7 @@ class KohdeController extends BaseController{
     
     
     public static function destroy($kohdeid) {
-        $kohde = new Kohde(array('kohdeid' => $kohdeid));
+        $kohde = Kohde::findWithTutkimukset($kohdeid);
         $kohde->destroy();
         
         Redirect::to('/kohde', array('message' => 'Kohde poistettu!'));

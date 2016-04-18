@@ -34,6 +34,14 @@ class TutkimusController {
         
         Redirect::to('/kohde/' . $kohdeid, array('message' => 'Tutkimus lisätty!'));
         }
+        
+        
+        public function destroy($tutkimusid) {
+            $tutkimus = new Tutkimus(array('tutkimusid' => $tutkimusid));
+            $tutkimus->destroy();
+            
+            Redirect::to('/tutkimus', array('message' => 'Tutkimus poistettu!'));
+        }
          
 }
 

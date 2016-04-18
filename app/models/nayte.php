@@ -50,4 +50,5 @@ class Nayte extends BaseModel{
         $query = DB::connection()->prepare('DELETE FROM Nayte WHERE nayteid = :nayteid');
         $query->execute(array('nayteid' => $this->nayteid));
     }
+    
 }

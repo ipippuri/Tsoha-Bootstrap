@@ -10,7 +10,8 @@
     Tutkimus {{tutkimus.tutkimusid}}</h3> 
     
     <a href="#" class="btn btn-default"> Muokkaa </a> 
-    <a href="#" class="btn btn-danger"> Poista </a> <br>
+    <form method="post" action="{{base_path}}/tutkimus/{{tutkimus.tutkimusid}}/destroy" style="display: inline-block;">
+        <button type="submit" class="btn btn-danger"> Poista </button> </form> <br>
     <br>
     
     <ul>

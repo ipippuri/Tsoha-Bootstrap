@@ -63,6 +63,10 @@
     TutkimusController::show($tutkimusid);
   });
   
+  $routes->post('/tutkimus/:tutkimusid/destroy', function($tutkimusid) {
+    TutkimusController::destroy($tutkimusid);
+  });
+
   
   
 

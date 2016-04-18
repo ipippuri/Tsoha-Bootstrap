@@ -88,5 +88,17 @@ class Tutkimus extends BaseModel{
         $this->tutkimusid = $row['tutkimusid'];
     }
     
+    
+    public function destroyNaytteet() {
+        $query = DB::connection()->prepare('DELETE FROM Nayte WHERE tutkimusid = :tutkimusid');
+        $query->execute(array('tutkimusid' => $this->tutkimusid));
+    }
+    
+    public function destroy() {
+        self::destroyNaytteet();
+        $query = DB::connection()->prepare('DELETE FROM Tutkimus WHERE tutkimusid = :tutkimusid');
+        $query->execute(array('tutkimusid' => $this->tutkimusid));
+    }
+    
       
 }

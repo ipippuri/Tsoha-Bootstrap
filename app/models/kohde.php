@@ -91,7 +91,14 @@ class Kohde extends BaseModel{
     }
 
     
+    public function destroyTutkimukset() {
+        foreach ($this->tutkimukset as $tutkimus) {
+            $tutkimus->destroy();
+        }
+    }
+
     public function destroy() {
+        self::destroyTutkimukset();
         $query = DB::connection()->prepare('DELETE FROM Kohde WHERE kohdeid = :kohdeid');
         $query->execute(array('kohdeid' => $this->kohdeid));
     }
