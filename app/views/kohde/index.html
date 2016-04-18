@@ -1,10 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
 
+
+    {% if user_logged_in %}
+    <h3>hei {{user_logged_in.kayttajatunnus}} !</h3>
+    {% endif %}
+
+    {% if message %}
+    <div class="alert alert-success"> {{message}} </div>
+    {% endif %}
+    
+    
     <h1> Tutkimuskohteet </h1>
     <a href="{{base_path}}/kohde/new" class="btn btn-default"> Lisää kohde </a> <br>
     <br>
 
+    
     <table class="table table-striped table-bordered">
 	<thead>
             <tr>

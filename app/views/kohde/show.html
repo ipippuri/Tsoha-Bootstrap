@@ -1,14 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
-
-    <div class="alert-success"> {{message}}</div>
+    
+    {% if message %}
+    <div class="alert alert-success"> {{message}} </div>
+    {% endif %}
+    
 
     <h3> {{kohde.nimi}} </h3>
-    <a href="#" class="btn btn-default"> Muokkaa </a> <a href="{{base_path}}/tutkimus/new" class="btn btn-default"> Lisää tutkimus </a><br>
+    <a href="{{base_path}}/kohde/{{kohde.kohdeid}}/edit" class="btn btn-default"> Muokkaa </a> 
+    <form method="post" action="{{base_path}}/kohde/{{kohde.kohdeid}}/destroy" style="display: inline-block;">
+        <button type="submit" class="btn btn-danger"> Poista </button> </form> <br>
     <br>
+    
     <p> <strong> Paikkakunta:</strong> {{kohde.paikkakunta}} </p>
 
-    <br>
+    <br><a href="{{base_path}}/kohde/{{kohde.kohdeid}}/new" class="btn btn-default"> Lisää tutkimus </a>
     <h3> Kohteen historia </h3>
     <table class="table table-striped table-bordered">
         <thead>

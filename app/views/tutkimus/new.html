@@ -1,22 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h1> Lisää tutkimus </h1>
+    <h1> Lisää tutkimus {{kohdeid}}</h1>
     
-    <form>
+    <form method="post" action="{{base_path}}/kohde/{{kohdeid}}">
         <div class="form-group">
             <label> Päivämäärä muodossa 'yyyy-mm-dd'</label>
-            <input class="form-control" type="text">
+            <input name="paivamaara" class="form-control" type="text">
         </div>
     
         <div class="form-group">
             <label> Aistinvarainen tieto  </label>
-            <textarea class="form-control"></textarea>
+            <textarea name="aistivarainen_tieto" class="form-control"></textarea>
         </div>
         
         <div class="form-group">
             <label> Mittaustieto  </label>
-            <textarea class="form-control"> </textarea>
+            <textarea name="mittaustieto" class="form-control"> </textarea>
         </div>
     
         <div class="form-group">

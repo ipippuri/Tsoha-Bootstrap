@@ -3,15 +3,25 @@
 
     <h1> Lisää tutkimuskohde </h1>
     
+    {% if errors %}
+    <div class="alert alert-danger">
+        <ul>
+            {% for error in errors %}
+            <li>{{error}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    
     <form method="post" action="{{base_path}}/kohde">
         <div class="form-group">
             <label> Nimi </label>
-            <input name="nimi" class="form-control" type="text" required="required">
+            <input name="nimi" class="form-control" type="text">
         </div>
     
         <div class="form-group">
             <label> Paikkakunta </label>
-            <input name="paikkakunta" class="form-control" type="text" required="required">
+            <input name="paikkakunta" class="form-control" type="text">
         </div>
     
         <div class="form-group">

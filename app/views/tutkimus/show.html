@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3> <a href="{{base_path}}/kohde/{{tutkimus.kohdeid}}"> {{tutkimus.kohteenNimi}}, {{tutkimus.kohteenPaikkakunta}}</a>: 
+    {% if message %}
+    <div class="alert alert-success"> {{message}} </div>
+    {% endif %}
+
+
+    <h3> <a href="{{base_path}}/kohde/{{tutkimus.kohdeid}}"> {{tutkimus.kohteenNimi}}, {{tutkimus.kohteenPaikkakunta}}</a>: 
     Tutkimus {{tutkimus.tutkimusid}}</h3> 
     
     <a href="#" class="btn btn-default"> Muokkaa </a> 
@@ -21,6 +26,8 @@
     </p>
     <br>
     
+    <a href="{{base_path}}/tutkimus/{{tutkimus.tutkimusid}}/new" class="btn btn-default"> Lisää näyte </a> <br>
+    
     <h3>Näytteet</h3>
     <table class="table table-striped table-bordered">
         <thead>
@@ -33,7 +40,7 @@
         <tbody>
             {% for nayte in tutkimus.naytteet %}
             <tr>
-                <td> <a href="{{base_path}}/nayte/{{nayte.nayteid}}"> {{nayte.nayteid}} </a></td>
+                <td> <a href="{{base_path}}/tutkimus/{{tutkimus.tutkimusid}}/{{nayte.nayteid}}"> {{nayte.nayteid}} </a></td>
                 <td> {{nayte.nimi}} </td>
             </tr>
             {% endfor %}

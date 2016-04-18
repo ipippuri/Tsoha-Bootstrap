@@ -35,8 +35,8 @@ class Tutkimus extends BaseModel{
     
     public static function find($tutkimusid) {
         $query = DB::connection()->prepare('SELECT * FROM Tutkimus LEFT JOIN Kohde '
-                . 'ON Kohde.kohdeid=Tutkimus.kohdeid WHERE tutkimusid = :id');
-        $query->execute(array('id' => $tutkimusid));
+                . 'ON Kohde.kohdeid=Tutkimus.kohdeid WHERE tutkimusid = :tutkimusid');
+        $query->execute(array('tutkimusid' => $tutkimusid));
         $row = $query->fetch();
         
         if($row) {
@@ -75,6 +75,16 @@ class Tutkimus extends BaseModel{
         
         $tutkimus->naytteet = $naytteet;
         return $tutkimus;
+    }
+    
+    
+    public function save() {
+        $query = DB::connection()->prepare('INSERT INTO Tutkimus (kohdeid, paivamaara, aistivarainen_tieto, mittaustieto) '
+                . 'VALUES (:kohdeid, :paivamaara, :aistivarainen_tieto, :mittaustieto) RETURNING tutkimusid');
+        $query->execute(array('kohdeid' => $this->kohdeid, 'paivamaara' => $this->paivamaara,
+            'aistivarainen_tieto' => $this->aistivarainen_tieto, 'mittaustieto' => $this->mittaustieto));
+        $row = $query->fetch();
+        $this->tutkimusid = $row['tutkimusid'];
     }
 
     

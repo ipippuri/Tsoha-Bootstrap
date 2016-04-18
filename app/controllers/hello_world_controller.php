@@ -9,15 +9,20 @@
 
     public static function sandbox(){
       // Testaa koodiasi täällä
-        $nuuksio = Kohde::find(1);
-        $kohteet = Kohde::all();
-        Kint::dump($kohteet);
-        Kint::dump($nuuksio);
+        $kohde = new Kohde(array(
+            'nimi' => 'n',
+            'paikkakunta' => ''
+        ));
+        $errors = $kohde->errors();
+        $count = count($errors);
+        
+        Kint::dump($errors);
+        echo $count;
       echo 'Hello World!';
     }
     
-    public static function etusivu() {
-        View::make('suunnitelmat/etusivu.html');
+    public static function kirjautuminen() {
+        View::make('kirjautuminen.html');
     }
     
     public static function kohteidenListaus() {

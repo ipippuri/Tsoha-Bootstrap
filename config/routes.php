@@ -8,16 +8,94 @@
     HelloWorldController::sandbox();
   });
   
-  $routes->get('/etusivu', function() {
-    HelloWorldController::etusivu();
+  
+  
+  $routes->get('/kirjautuminen', function() {
+    KayttajaController::login();
   });
+  
+  $routes->post('/kirjautuminen', function() {
+    KayttajaController::handle_login();
+  });
+  
+
+  
+  $routes->get('/kohde', function() {
+    KohdeController::index();
+  });
+  
+  $routes->post('/kohde', function() {
+    KohdeController::store();      
+  });
+  
+  $routes->get('/kohde/new', function() {
+    KohdeController::create();
+  });
+  
+  $routes->get('/kohde/:kohdeid', function($kohdeid) {
+    KohdeController::show($kohdeid);
+  });
+  
+  $routes->get('/kohde/:kohdeid/edit', function($kohdeid) {
+    KohdeController::edit($kohdeid);
+  });
+  
+  $routes->post('/kohde/:kohdeid/edit', function($kohdeid) {
+    KohdeController::update($kohdeid);
+  });
+  
+  $routes->post('/kohde/:kohdeid/destroy', function($kohdeid) {
+    KohdeController::destroy($kohdeid);
+  });
+
+  
+  
+  
+  $routes->get('/tutkimus', function() {
+    TutkimusController::index();
+  });
+  
+  $routes->post('/kohde/:kohdeid', function($kohdeid) {
+      TutkimusController::store($kohdeid);
+  });
+  
+  $routes->get('/kohde/:kohdeid/new', function($kohdeid) {
+    TutkimusController::create($kohdeid);
+  });
+  
+  $routes->get('/tutkimus/:tutkimusid', function($tutkimusid) {
+    TutkimusController::show($tutkimusid);
+  });
+  
+  
+  
+
+  
+  $routes->post('/tutkimus/:tutkimusid', function($tutkimusid) {
+    NayteController::store($tutkimusid);
+  });
+  
+  $routes->get('/tutkimus/:tutkimusid/new', function($tutkimusid) {
+    NayteController::create($tutkimusid);
+  });
+  
+  $routes->post('/tutkimus/:tutkimusid/:nayteid/destroy', function($tutkimusid, $nayteid) {
+    NayteController::destroy($tutkimusid, $nayteid);
+  });
+  
+  $routes->get('/tutkimus/:tutkimusid/:nayteid', function($nayteid) {
+    NayteController::show($nayteid);
+  });
+
+  
+
   
   $routes->get('/kohteidenlistaus', function() {
     HelloWorldController::kohteidenListaus();
   });
   
   $routes->get('/tutkimustenlistaus', function() {
-  HelloWorldController::tutkimustenListaus();
+    HelloWorldController::tutkimustenListaus();
   });
   
   $routes->get('/tutkijantoiminta', function() {
@@ -29,7 +107,7 @@
   });
   
   $routes->get('/tutkimuksenesittely', function() {
-      HelloWorldController::tutkimuksenEsittely();
+    HelloWorldController::tutkimuksenEsittely();
   });
     
   $routes->get('/naytteenesittely', function() {
@@ -47,40 +125,3 @@
   $routes->get('/naytteenmuokkaus', function() {
     HelloWorldController::naytteenMuokkaus();
   });
-  
-
-  $routes->get('/kohde', function() {
-    KohdeController::index();
-  });
-  
-  $routes->post('/kohde', function() {
-    KohdeController::store();      
-  });
-  
-  $routes->get('/kohde/new', function() {
-    KohdeController::create();
-  });
-  
-  $routes->get('/kohde/:kohdeid', function($kohdeid) {
-    KohdeController::show($kohdeid);
-  });
-  
-  
-  $routes->get('/tutkimus', function() {
-    TutkimusController::index();
-  });
-  
-  $routes->get('/tutkimus/new', function() {
-    TutkimusController::create();
-  });
-  
-  $routes->get('/tutkimus/:tutkimusid', function($tutkimusid) {
-    TutkimusController::show($tutkimusid);
-  });
-  
-  
-  $routes->get('/nayte/:nayteid', function($nayteid) {
-    NayteController::show($nayteid);
-  });
-
-  

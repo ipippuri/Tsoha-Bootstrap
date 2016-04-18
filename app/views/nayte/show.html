@@ -4,17 +4,19 @@
 <h3> <a href="{{base_path}}/tutkimus/{{nayte.tutkimusid}}">Tutkimus {{nayte.tutkimusid}}</a>: {{nayte.nimi}} </h3>
     
     <a href="#" class="btn btn-default"> Muokkaa </a> 
-    <a href="#" class="btn btn-danger"> Poista </a> <br>
+    <form method="post" action="{{base_path}}/tutkimus/{{nayte.tutkimusid}}/{{nayte.nayteid}}/destroy" style="display: inline-block;">
+        <button type="submit" class="btn btn-danger"> Poista </button> 
+    </form> <br>
     <br>
     
     <ul>
         <li><strong> Näytteen id: </strong> {{nayte.nayteid}} </li> 
         <li><strong> Tutkija: </strong> <a href="#"> {{nayte.tutkijaid}} </a> </li> 
         <li><strong> Näytteenottopaikkan koordinaatit: </strong> 
-        60.25, 24.6
+        {{nayte.leveysaste}}, {{nayte.pituusaste}}
         </li>
         <li><strong> Näytteenottopaikkan maamerkkitieto: </strong> 
-        maamerkkitieto
+        {{nayte.maamerkkitieto}}
         </li>
     </ul>
     

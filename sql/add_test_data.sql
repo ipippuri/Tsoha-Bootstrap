@@ -1,15 +1,11 @@
 -- Lisää INSERT INTO lauseet tähän tiedostoon
 
 INSERT INTO Tutkija (kayttajatunnus, salasana) VALUES ('Tutkija1', 'Tutkija123');
+INSERT INTO Tutkija (kayttajatunnus, salasana) VALUES ('tutkija', 'salasana');
+
 
 INSERT INTO Kohde (nimi, paikkakunta) VALUES ('Nuuksion Pitkäjärvi', 'Espoo');
 INSERT INTO Kohde (nimi, paikkakunta) VALUES ('Aulangonjärvi', 'Hämeenlinna');
-
-
-INSERT INTO Naytteenottopaikka (kohdeid, leveysaste, pituusaste, maamerkkitieto) VALUES
-            (1, 60.25, 24.6, 'Koivu');
-INSERT INTO Naytteenottopaikka (kohdeid, leveysaste, pituusaste, maamerkkitieto) VALUES
-            (2, 61.027257, 24.472031, 'Kuusi');
 
 
 INSERT INTO Tutkimus (kohdeid, tutkijaid, paivamaara, aistivarainen_tieto, mittaustieto) VALUES
@@ -22,9 +18,9 @@ INSERT INTO Tutkimus (kohdeid, tutkijaid, paivamaara, aistivarainen_tieto, mitta
             (2, 1, '2015-02-13', 'Lumitilanne', 'Lämpötila 0 astetta');
 
 
-INSERT INTO Nayte (n_id, tutkimusid, tutkijaid, nimi, kuvaus, analyysi) VALUES (1, 1, 1,'Happipitoisuus','Veden happipitoisuus','Analyysin tulos tulee tähän.');
-INSERT INTO Nayte (n_id, tutkimusid, tutkijaid, nimi, kuvaus) VALUES (2, 2, 1, 'pH','Veden pH-arvo');
-INSERT INTO Nayte (n_id, tutkimusid, tutkijaid, nimi, kuvaus) VALUES (1, 1, 1, 'pH','Veden pH-arvo');
+INSERT INTO Nayte (tutkimusid, tutkijaid, nimi, kuvaus, analyysi, leveysaste, pituusaste, maamerkkitieto) VALUES (1, 1,'Happipitoisuus','Veden happipitoisuus','Analyysin tulos tulee tähän.', 60.25, 24.6, 'Koivu');
+INSERT INTO Nayte (tutkimusid, tutkijaid, nimi, kuvaus, leveysaste, pituusaste, maamerkkitieto) VALUES (2, 1, 'pH','Veden pH-arvo', 61.027257, 24.472031, 'Kuusi');
+INSERT INTO Nayte (tutkimusid, tutkijaid, nimi, kuvaus, leveysaste, pituusaste) VALUES (1, 1, 'pH','Veden pH-arvo', 60.25, 24.6);
 
 
 

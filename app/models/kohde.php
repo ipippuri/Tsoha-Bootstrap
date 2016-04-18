@@ -2,11 +2,14 @@
 
 class Kohde extends BaseModel{
     public $kohdeid, $nimi, $paikkakunta, $viimeisinTutkimus,
-            $tutkimukset=array();
+            $tutkimukset=array(), $validators;
         
+    
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array('validate_nimi', 'validate_paikkakunta');
     }
+    
     
     public static function all(){
         $query = DB::connection()->prepare('SELECT * FROM Kohde LEFT JOIN 
@@ -48,6 +51,7 @@ class Kohde extends BaseModel{
         return null;
     }
     
+    
     public static function findWithTutkimukset($kohdeid) {
         $kohde = Kohde::find($kohdeid);
         
@@ -70,6 +74,7 @@ class Kohde extends BaseModel{
         return $kohde;
     }
 
+    
     public function save() {
         $query = DB::connection()->prepare('INSERT INTO Kohde (nimi, paikkakunta)'
                 . 'VALUES (:nimi, :paikkakunta) RETURNING kohdeid');
@@ -78,5 +83,46 @@ class Kohde extends BaseModel{
         $row = $query->fetch();
         $this->kohdeid = $row['kohdeid'];
     }
+   
+    
+    public function update() {
+        $query = DB::connection()->prepare('UPDATE Kohde SET nimi = :nimi, paikkakunta = :paikkakunta WHERE kohdeid = :kohdeid');
+        $query->execute(array('kohdeid' => $this->kohdeid, 'nimi' => $this->nimi, 'paikkakunta' => $this->paikkakunta));
+    }
+
+    
+    public function destroy() {
+        $query = DB::connection()->prepare('DELETE FROM Kohde WHERE kohdeid = :kohdeid');
+        $query->execute(array('kohdeid' => $this->kohdeid));
+    }
+
+
+    
+    public function validate_nimi() {
+        $errors = array();
+        if($this->nimi == '' || $this->nimi == null) {
+            $errors[] = 'Nimi ei saa olla tyhjä.';
+        }
+        
+        if(strlen($this->nimi) < 2) {
+            $errors[] = 'Nimi: Pituus vähintään 2 merkkiä';
+        }
+        
+        return $errors;
+    }
+    
+        public function validate_paikkakunta() {
+        $errors = array();
+        if($this->paikkakunta == '' || $this->paikkakunta == null) {
+            $errors[] = 'Paikkakunta ei saa olla tyhjä.';
+        }
+        
+        if(strlen($this->paikkakunta) < 2) {
+            $errors[] = 'Paikkakunta: Vähintään 2 merkkiä';
+        }
+        
+        return $errors;
+    }
+
       
 }
