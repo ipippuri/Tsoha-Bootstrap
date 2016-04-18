@@ -15,7 +15,7 @@ CREATE TABLE Kohde(
 CREATE TABLE Tutkimus(
     tutkimusid SERIAL PRIMARY KEY,
     kohdeid integer REFERENCES Kohde(kohdeid) NOT NULL,
-    tutkijaid integer REFERENCES Tutkija(tutkijaid),
+    tutkijaid integer REFERENCES Tutkija(tutkijaid) NOT NULL,
     paivamaara date NOT NULL,
     aistivarainen_tieto text NOT NULL,
     mittaustieto text NOT NULL

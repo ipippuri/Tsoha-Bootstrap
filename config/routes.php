@@ -1,20 +1,16 @@
 <?php
 
-  $routes->get('/', function() {
-    HelloWorldController::index();
-  });
-
   $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
   });
   
   
   
-  $routes->get('/kirjautuminen', function() {
+  $routes->get('/', function() {
     KayttajaController::login();
   });
   
-  $routes->post('/kirjautuminen', function() {
+  $routes->post('/', function() {
     KayttajaController::handle_login();
   });
   
@@ -79,13 +75,14 @@
     NayteController::create($tutkimusid);
   });
   
+  $routes->get('/tutkimus/:tutkimusid/:nayteid', function($tutkimusid, $nayteid) {
+    NayteController::show($tutkimusid, $nayteid);
+  });
+  
   $routes->post('/tutkimus/:tutkimusid/:nayteid/destroy', function($tutkimusid, $nayteid) {
     NayteController::destroy($tutkimusid, $nayteid);
   });
   
-  $routes->get('/tutkimus/:tutkimusid/:nayteid', function($nayteid) {
-    NayteController::show($nayteid);
-  });
 
   
 

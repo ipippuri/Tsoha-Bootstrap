@@ -15,7 +15,7 @@ class KayttajaController extends BaseController{
             View::make('kayttaja/login.html', array('error' => 'Väärä käyttäjätunnus tai salasana!',
                 'kayttajatunnus' => $params['kayttajatunnus']));
         } else {
-            $session['user'] = $user->tutkijaid;
+            $_SESSION['user'] = $user->tutkijaid;
             Redirect::to('/kohde', array('message' => 'Tervetuloa ' . $user->kayttajatunnus . '!'));
         }
     }

@@ -31,19 +31,12 @@ class Nayte extends BaseModel{
         return null;
     }
     
-//    public function getTutkimusid() {
-//        $query = DB::connection()->prepare('SELECT tutkimusid FROM Nayte WHERE nayteid = :nayteid LIMIT 1');
-//        $query->execute(array('nayteid' => $nayteid));
-//        $row = $query->fetch();
-//        $tutkimusid = $row['tutkimusid'];
-//    }
-    
-    
+  
     public function save() {
         $query = DB::connection()->prepare('INSERT INTO Nayte (tutkimusid, tutkijaid, nimi, leveysaste, '
-                . 'pituusaste, maamerkkitieto, kuvaus, analyysi) VALUES (:tutkimusid, 1, :nimi, '
+                . 'pituusaste, maamerkkitieto, kuvaus, analyysi) VALUES (:tutkimusid, :tutkijaid, :nimi, '
                 . ':leveysaste, :pituusaste, :maamerkkitieto, :kuvaus, :analyysi) RETURNING nayteid');
-        $query->execute(array('tutkimusid' => $this->tutkimusid, 'nimi' => $this->nimi,
+        $query->execute(array('tutkimusid' => $this->tutkimusid, 'tutkijaid' => $this->tutkijaid, 'nimi' => $this->nimi,
             'leveysaste' => $this->leveysaste, 'pituusaste' => $this->pituusaste,
             'maamerkkitieto' => $this->maamerkkitieto, 'kuvaus' => $this->kuvaus,
             'analyysi' => $this->analyysi));

@@ -2,7 +2,8 @@
 
 class Tutkimus extends BaseModel{
     public $tutkimusid, $kohdeid, $kohteenNimi, $kohteenPaikkakunta, $tutkijaid, 
-            $paivamaara, $aistivarainen_tieto, $mittaustieto, $nayteet=array();
+            $paivamaara, $aistivarainen_tieto, $mittaustieto, $nayteet=array(),
+            $validators;
     
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -79,13 +80,13 @@ class Tutkimus extends BaseModel{
     
     
     public function save() {
-        $query = DB::connection()->prepare('INSERT INTO Tutkimus (kohdeid, paivamaara, aistivarainen_tieto, mittaustieto) '
-                . 'VALUES (:kohdeid, :paivamaara, :aistivarainen_tieto, :mittaustieto) RETURNING tutkimusid');
-        $query->execute(array('kohdeid' => $this->kohdeid, 'paivamaara' => $this->paivamaara,
+        $query = DB::connection()->prepare('INSERT INTO Tutkimus (kohdeid, tutkijaid, paivamaara, aistivarainen_tieto, mittaustieto) '
+                . 'VALUES (:kohdeid, :tutkijaid, :paivamaara, :aistivarainen_tieto, :mittaustieto) RETURNING tutkimusid');
+        $query->execute(array('kohdeid' => $this->kohdeid, 'tutkijaid' => $this->tutkijaid, 'paivamaara' => $this->paivamaara,
             'aistivarainen_tieto' => $this->aistivarainen_tieto, 'mittaustieto' => $this->mittaustieto));
         $row = $query->fetch();
         $this->tutkimusid = $row['tutkimusid'];
     }
-
     
+      
 }

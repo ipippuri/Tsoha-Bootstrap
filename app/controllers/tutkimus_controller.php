@@ -20,8 +20,10 @@ class TutkimusController {
     
     public function store($kohdeid) {
         $params = $_POST;
+        $tutkijaid = $_SESSION['user'];
         $attributes = array(
             'kohdeid' => $kohdeid,
+            'tutkijaid'  => $tutkijaid,
             'paivamaara' => $params['paivamaara'],
             'aistivarainen_tieto' => $params['aistivarainen_tieto'],
             'mittaustieto' => $params['mittaustieto']
@@ -31,5 +33,7 @@ class TutkimusController {
         $tutkimus->save();
         
         Redirect::to('/kohde/' . $kohdeid, array('message' => 'Tutkimus lisätty!'));
-    }
+        }
+         
 }
+

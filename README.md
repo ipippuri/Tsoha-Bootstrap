@@ -10,7 +10,22 @@ Yleisiä linkkejä:
 Tutkimusaineiston keräys: [linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Tutkimusaineston_kerays.html) 
 
 
- ### Suunnitellut sivut:
+ ## Kirjatuminen
+    Järjestelmään voi kirjautua tunnuksilla:
+        Käyttäjätunnus: tutkija
+        Salasana: salasana
+
+        Käyttäjätunnus: tutkija2
+        Salasana: abc123
+
+
+
+
+
+
+
+
+ ## Suunnitellut sivut:
  * [Etusivu] (http://ipippuri.users.cs.helsinki.fi/tsoha/etusivu)
  * [Kohteiden listaus] (http://ipippuri.users.cs.helsinki.fi/tsoha/kohteidenlistaus)
  * [Tutkimusten listaus] (http://ipippuri.users.cs.helsinki.fi/tsoha/tutkimustenlistaus)

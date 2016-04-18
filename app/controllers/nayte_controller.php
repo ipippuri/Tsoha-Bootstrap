@@ -1,9 +1,9 @@
 <?php
 
-class NayteController {
-    public static function show($nayteid) {
+class NayteController extends BaseController{
+    public static function show($tutkimusid, $nayteid) {
         $nayte = Nayte::find($nayteid);
-        View::make('/nayte/show.html', array('nayte' => $nayte));
+        View::make('nayte/show.html', array('nayte' => $nayte));
     }
     
     
@@ -14,8 +14,10 @@ class NayteController {
     
     public function store($tutkimusid) {
         $params = $_POST;
+        $tutkijaid = $_SESSION['user'];
         $attributes = array(
             'tutkimusid' => $tutkimusid,
+            'tutkijaid' => $tutkijaid,
             'nimi' => $params['nimi'],
             'kuvaus' => $params['kuvaus'],
             'analyysi' => $params['analyysi'],
@@ -27,7 +29,7 @@ class NayteController {
         $nayte = new Nayte($attributes);
         $nayte->save();
         
-        Redirect::to('/tutkimus/' . $tutkimusid, array('message' => 'Näyte lisätty!'));     
+        Redirect::to('/tutkimus/' . $tutkimusid . '/' . $nayte->nayteid , array('message' => 'Näyte lisätty!'));     
     }
     
     

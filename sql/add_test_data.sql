@@ -2,6 +2,8 @@
 
 INSERT INTO Tutkija (kayttajatunnus, salasana) VALUES ('Tutkija1', 'Tutkija123');
 INSERT INTO Tutkija (kayttajatunnus, salasana) VALUES ('tutkija', 'salasana');
+INSERT INTO Tutkija (kayttajatunnus, salasana) VALUES ('tutkija2', 'abc123');
+
 
 
 INSERT INTO Kohde (nimi, paikkakunta) VALUES ('Nuuksion Pitkäjärvi', 'Espoo');
