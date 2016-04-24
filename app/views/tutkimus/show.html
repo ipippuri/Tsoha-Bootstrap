@@ -9,7 +9,7 @@
     <h3> <a href="{{base_path}}/kohde/{{tutkimus.kohdeid}}"> {{tutkimus.kohteenNimi}}, {{tutkimus.kohteenPaikkakunta}}</a>: 
     Tutkimus {{tutkimus.tutkimusid}}</h3> 
     
-    <a href="#" class="btn btn-default"> Muokkaa </a> 
+    <a href="{{base_path}}/tutkimus/{{tutkimus.tutkimusid}}/edit" class="btn btn-default"> Muokkaa </a> 
     <form method="post" action="{{base_path}}/tutkimus/{{tutkimus.tutkimusid}}/destroy" style="display: inline-block;">
         <button type="submit" class="btn btn-danger"> Poista </button> </form> <br>
     <br>

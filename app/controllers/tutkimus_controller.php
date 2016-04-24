@@ -1,7 +1,8 @@
 <?php
 
-class TutkimusController {
+class TutkimusController extends BaseController{
     public static function index() {
+        self::check_logged_in();
         $tutkimukset = Tutkimus::all();
         View::make('tutkimus/index.html', array('tutkimukset' => $tutkimukset));
     }
@@ -13,6 +14,7 @@ class TutkimusController {
     
     
     public static function show($tutkimusid) {
+        self::check_logged_in();
         $tutkimus = Tutkimus::findWithNaytteet($tutkimusid);
         View::make('/tutkimus/show.html', array('tutkimus' => $tutkimus));
     }
@@ -30,18 +32,49 @@ class TutkimusController {
             );
         
         $tutkimus = new Tutkimus($attributes);
-        $tutkimus->save();
+        $errors = $tutkimus->errors();
         
-        Redirect::to('/kohde/' . $kohdeid, array('message' => 'Tutkimus lisätty!'));
+        if(count($errors) == 0) {
+           $tutkimus->save();        
+            Redirect::to('/kohde/' . $kohdeid, array('message' => 'Tutkimus lisätty!'));
+        } else {
+            View::make('/tutkimus/new.html', array('errors' => $errors, 'attributes' => $attributes));
         }
+    }
+     
+    
+    public function edit($tutkimusid) {
+        $tutkimus = Tutkimus::find($tutkimusid);
+        View::make('/tutkimus/edit.html', array('attributes' => $tutkimus));
+    }
+    
+    
+    public function update($tutkimusid) {
+        $params = $_POST;
+        $attributes = array(
+            'tutkimusid' => $tutkimusid,
+            'aistivarainen_tieto' => $params['aistivarainen_tieto'],
+            'mittaustieto' => $params['mittaustieto']
+        );
         
+        $tutkimus = new Tutkimus($attributes);
+        $errors = $tutkimus->errors();
         
-        public function destroy($tutkimusid) {
+        if(count($errors) == 0) {
+            $tutkimus->update();
+            Redirect::to('/tutkimus/' . $tutkimusid, array('message' => 'Tutkimus päivitetty!'));
+        } else {
+            View::make('/tutkimus/edit.html', array('errors' => $errors, 'attributes' => $attributes));
+        }
+    }
+    
+    
+    public function destroy($tutkimusid) {
             $tutkimus = new Tutkimus(array('tutkimusid' => $tutkimusid));
             $tutkimus->destroy();
             
             Redirect::to('/tutkimus', array('message' => 'Tutkimus poistettu!'));
-        }
+    }
          
 }
 

@@ -12,27 +12,23 @@
     {% endif %}
 
 
-    <h1> Lisää tutkimus {{kohdeid}}</h1>
+    <h1> Muokkaa tutkimusta </h1>
     
-    <form method="post" action="{{base_path}}/kohde/{{kohdeid}}">
-        <div class="form-group">
-            <label> Päivämäärä muodossa 'yyyy-mm-dd'</label>
-            <input name="paivamaara" class="form-control" type="date">
-        </div>
+    <form method="post" action="{{base_path}}/tutkimus/{{attributes.tutkimusid}}/edit">
     
         <div class="form-group">
             <label> Aistinvarainen tieto  </label>
-            <textarea name="aistivarainen_tieto" class="form-control"></textarea>
+            <textarea name="aistivarainen_tieto" class="form-control">{{attributes.aistivarainen_tieto}}</textarea>
         </div>
         
         <div class="form-group">
             <label> Mittaustieto  </label>
-            <textarea name="mittaustieto" class="form-control"></textarea>
+            <textarea name="mittaustieto" class="form-control">{{attributes.mittaustieto}}</textarea>
         </div>
     
         <div class="form-group">
             <button type="submit" class="btn btn-primary"> Tallenna </button>
-            <a class="btn btn-default" href="#" role="button"> Peruuta </a>
+            <a class="btn btn-default" href="{{base_path}}/tutkimus/{{attributes.tutkimusid}}" role="button"> Peruuta </a>
         </div> 
     </form>
 

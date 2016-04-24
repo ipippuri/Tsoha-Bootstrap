@@ -2,10 +2,6 @@
 {% block content %}
 
 
-    {% if user_logged_in %}
-    Kirjautunut: {{user_logged_in.kayttajatunnus}}
-    {% endif %}
-
     {% if message %}
     <div class="alert alert-success"> {{message}} </div>
     {% endif %}

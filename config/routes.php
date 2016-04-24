@@ -14,6 +14,10 @@
     KayttajaController::handle_login();
   });
   
+  $routes->post('/logout', function() {
+    KayttajaController::logout();
+  });
+  
 
   
   $routes->get('/kohde', function() {
@@ -52,7 +56,7 @@
   });
   
   $routes->post('/kohde/:kohdeid', function($kohdeid) {
-      TutkimusController::store($kohdeid);
+    TutkimusController::store($kohdeid);
   });
   
   $routes->get('/kohde/:kohdeid/new', function($kohdeid) {
@@ -61,6 +65,14 @@
   
   $routes->get('/tutkimus/:tutkimusid', function($tutkimusid) {
     TutkimusController::show($tutkimusid);
+  });
+  
+  $routes->get('/tutkimus/:tutkimusid/edit', function($tutkimusid) {
+    TutkimusController::edit($tutkimusid);
+  });
+  
+  $routes->post('/tutkimus/:tutkimusid/edit', function($tutkimusid) {
+    TutkimusController::update($tutkimusid);
   });
   
   $routes->post('/tutkimus/:tutkimusid/destroy', function($tutkimusid) {

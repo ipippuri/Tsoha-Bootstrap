@@ -2,11 +2,17 @@
 {% block content %}
 
     <h2> Kirjaudu sisään </h2>
-    <p> Sovelluksen käyttäminen vaatii kirjautumisen.</p>
     
     {% if error %}
     <div class="alert alert-danger"> {{error}} </div>
     {% endif %}
+    
+    {% if message %}
+    <div class="alert alert-danger"> {{message}} </div>
+    {% endif %}
+    <br>
+    
+    <p> Sovelluksen käyttäminen vaatii kirjautumisen.</p>
     
     <form method="post" action="{{base_path}}/">
         <div class="form-group">

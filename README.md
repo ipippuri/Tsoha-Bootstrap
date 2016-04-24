@@ -13,10 +13,10 @@ Tutkimusaineiston keräys: [linkki valmiiseen aiheeseen](http://advancedkittenry
 ## Kirjautuminen
 Järjestelmään voi kirjautua tunnuksilla:
 *  Käyttäjätunnus: tutkija
-*  Salasana: salasana
+  Salasana: salasana
 
 *  Käyttäjätunnus: tutkija2
-*   Salasana: abc123
+   Salasana: abc123
 
 
 

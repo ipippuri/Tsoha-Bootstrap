@@ -7,6 +7,7 @@ class Tutkimus extends BaseModel{
     
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array('validate_aistivarainen_tieto', 'validate_mittaustieto');
     }
 
     
@@ -57,6 +58,7 @@ class Tutkimus extends BaseModel{
         return null;
     }
     
+    
     public static function findWithNaytteet($tutkimusid) {
         $tutkimus = Tutkimus::find($tutkimusid);
         
@@ -89,10 +91,18 @@ class Tutkimus extends BaseModel{
     }
     
     
+    public function update() {
+        $query = DB::connection()->prepare('UPDATE Tutkimus SET aistivarainen_tieto = :aistivarainen_tieto, '
+                . 'mittaustieto = :mittaustieto WHERE tutkimusid = :tutkimusid');
+        $query->execute(array('tutkimusid' => $this->tutkimusid, 'aistivarainen_tieto' => $this->aistivarainen_tieto, 'mittaustieto' => $this->mittaustieto));
+    }
+    
+    
     public function destroyNaytteet() {
         $query = DB::connection()->prepare('DELETE FROM Nayte WHERE tutkimusid = :tutkimusid');
         $query->execute(array('tutkimusid' => $this->tutkimusid));
     }
+    
     
     public function destroy() {
         self::destroyNaytteet();
@@ -100,5 +110,23 @@ class Tutkimus extends BaseModel{
         $query->execute(array('tutkimusid' => $this->tutkimusid));
     }
     
-      
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public function validate_aistivarainen_tieto() {
+        $errors = parent::validate_string_length($this->aistivarainen_tieto, 4);
+        return $errors;
+    }
+
+    public function validate_mittaustieto() {
+        $errors = parent::validate_string_length($this->mittaustieto, 4);
+        return $errors;
+    }
 }

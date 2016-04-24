@@ -27,17 +27,17 @@
       return $errors;
     }
     
-//    public function validate_string_length($string, $length) {
-//        $errors = array();
-//        if($string == '' || $string == null) {
-//            $errors[] = 'Kenttä ei saa olla tyhjä.';
-//        }
-//        
-//        if($string < $length) {
-//            $errors[] = 'Vähintään' . $length . ' merkkiä';
-//        }
-//        
-//        return $errors;
-//    }
+    public function validate_string_length($string, $length) {
+        $errors = array();
+        if($string == '' || $string == null) {
+            $errors[] = 'Kenttä ei saa olla tyhjä.';
+        }
+        
+        if($string < $length) {
+            $errors[] = 'Vähintään ' . $length . ' merkkiä';
+        }
+        
+        return $errors;
+    }
 
   }
