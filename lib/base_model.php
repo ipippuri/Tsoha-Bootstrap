@@ -27,14 +27,14 @@
       return $errors;
     }
     
-    public function validate_string_length($string, $length) {
+    public function validate_string_length($string, $length, $output) {
         $errors = array();
         if($string == '' || $string == null) {
-            $errors[] = 'Kenttä ei saa olla tyhjä.';
+            $errors[] = $output . ': Kenttä ei saa olla tyhjä.';
         }
         
-        if($string < $length) {
-            $errors[] = 'Vähintään ' . $length . ' merkkiä';
+        if(strlen($string) < $length) {
+            $errors[] = $output . ': Vähintään ' . $length . ' merkkiä';
         }
         
         return $errors;

@@ -10,6 +10,7 @@ class KohdeController extends BaseController{
     
     
     public static  function create() {
+        self::check_logged_in();
         View::make('kohde/new.html');
     }
     
@@ -22,6 +23,7 @@ class KohdeController extends BaseController{
 
 
     public static function store() {
+        self::check_logged_in();
         $params = $_POST;
         $attributes = array(
             'nimi' => $params['nimi'],
@@ -42,12 +44,14 @@ class KohdeController extends BaseController{
     
     
     public static function edit($kohdeid) {
+        self::check_logged_in();
         $kohde = Kohde::find($kohdeid);
         View::make('kohde/edit.html', array('attributes' => $kohde));
     }
     
     
     public function update($kohdeid) {
+        self::check_logged_in();
         $params = $_POST;
         
         $attributes = array(
@@ -69,6 +73,7 @@ class KohdeController extends BaseController{
     
     
     public static function destroy($kohdeid) {
+        self::check_logged_in();
         $kohde = Kohde::findWithTutkimukset($kohdeid);
         $kohde->destroy();
         

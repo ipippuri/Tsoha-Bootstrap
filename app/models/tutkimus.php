@@ -121,12 +121,12 @@ class Tutkimus extends BaseModel{
     
     
     public function validate_aistivarainen_tieto() {
-        $errors = parent::validate_string_length($this->aistivarainen_tieto, 4);
+        $errors = parent::validate_string_length($this->aistivarainen_tieto, 4, 'Aistivarainen tieto');
         return $errors;
     }
 
     public function validate_mittaustieto() {
-        $errors = parent::validate_string_length($this->mittaustieto, 4);
+        $errors = parent::validate_string_length($this->mittaustieto, 4, 'Mittaustieto');
         return $errors;
     }
 }

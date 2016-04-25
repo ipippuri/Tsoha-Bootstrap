@@ -2,10 +2,13 @@
 
 class Nayte extends BaseModel{
     public $nayteid, $kohdeid, $tutkimusid, $tutkijaid, 
-            $nimi, $leveysaste, $pituusaste, $maamerkkitieto, $kuvaus, $analyysi;
+            $nimi, $leveysaste, $pituusaste, $maamerkkitieto, $kuvaus, $analyysi,
+            $validators;
     
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array('validate_nimi', 'validate_leveysaste', 'validate_pituusaste',
+            'validate_kuvaus');
     }
     
     public static function find($nayteid) {
@@ -46,9 +49,65 @@ class Nayte extends BaseModel{
     }
     
     
+    public function update() {
+        $query = DB::connection()->prepare('UPDATE Nayte SET nimi = :nimi, leveysaste = :leveysaste,'
+                . 'pituusaste = :pituusaste, maamerkkitieto = :maamerkkitieto, kuvaus = :kuvaus,'
+                . 'analyysi = :analyysi WHERE nayteid= :nayteid');
+        $query->execute(array('nayteid' => $this->nayteid, 'nimi' => $this->nimi, 'leveysaste' => $this->leveysaste,
+            'pituusaste' => $this->pituusaste, 'maamerkkitieto' => $this->maamerkkitieto,
+            'kuvaus' => $this->kuvaus, 'analyysi' => $this->analyysi));
+    }
+    
+    
     public function destroy() {
         $query = DB::connection()->prepare('DELETE FROM Nayte WHERE nayteid = :nayteid');
         $query->execute(array('nayteid' => $this->nayteid));
     }
+    
+    
+    
+    
+    
+    
+    public function validate_nimi() {
+        return parent::validate_string_length($this->nimi, 2, 'Nimi');
+    }
+    
+    public function validate_kuvaus() {
+        return parent::validate_string_length($this->kuvaus, 4, 'Kuvaus');
+    }
+    
+    public function validate_leveysaste() {
+        $errors = array();
+        
+        if($this->leveysaste == '' || $this->leveysaste == null) {
+            $errors[] = 'Leveysaste: Kenttä ei saa olla tyhjä.';
+        }
+        if($this->leveysaste < -90 || $this->leveysaste > 90) {
+            $errors[] = 'Leveysaste: Arvon on oltava välillä (-90, 90).';
+        }
+        if (strlen($this->leveysaste) > 7) {
+            $errors[] = 'Leveysaste: Korkeintaan 7 merkkiä';
+        }
+        
+        return $errors;
+    }
+    
+    public function validate_pituusaste() {
+        $errors = array();
+        
+        if($this->pituusaste == '' || $this->pituusaste == null) {
+            $errors[] = 'Pituusaste: Kenttä ei saa olla tyhjä.';
+        }
+        if($this->pituusaste < -180 || $this->pituusaste > 180) {
+            $errors[] = 'Pituusaste: Arvon on oltava välillä (-180, 180).';
+        }
+        if (strlen($this->pituusaste) > 7) {
+            $errors[] = 'Pituusaste: Korkeintaan 7 merkkiä';
+        }
+        
+        return $errors;
+    }
+    
     
 }

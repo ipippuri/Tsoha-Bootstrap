@@ -91,6 +91,14 @@
     NayteController::create($tutkimusid);
   });
   
+  $routes->get('/tutkimus/:tutkimusid/:nayteid/edit', function($tutkimusid, $nayteid) {
+    NayteController::edit($tutkimusid, $nayteid);
+  });
+  
+  $routes->post('/tutkimus/:tutkimusid/:nayteid/edit', function($tutkimusid, $nayteid) {
+    NayteController::update($tutkimusid, $nayteid);
+  });
+  
   $routes->get('/tutkimus/:tutkimusid/:nayteid', function($tutkimusid, $nayteid) {
     NayteController::show($tutkimusid, $nayteid);
   });

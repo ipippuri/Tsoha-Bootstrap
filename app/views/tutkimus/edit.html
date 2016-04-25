@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 
+    <h1> Muokkaa tutkimusta </h1>
+    
     {% if errors %}
     <div class="alert alert-danger">
         <ul>
@@ -10,9 +12,6 @@
         </ul>
     </div>
     {% endif %}
-
-
-    <h1> Muokkaa tutkimusta </h1>
     
     <form method="post" action="{{base_path}}/tutkimus/{{attributes.tutkimusid}}/edit">
     

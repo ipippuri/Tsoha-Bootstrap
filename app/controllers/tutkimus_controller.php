@@ -9,6 +9,7 @@ class TutkimusController extends BaseController{
     
     
     public static function create($kohdeid) {
+        self::check_logged_in();
         View::make('/tutkimus/new.html', array('kohdeid' => $kohdeid));
     }
     
@@ -21,6 +22,7 @@ class TutkimusController extends BaseController{
     
     
     public function store($kohdeid) {
+        self::check_logged_in();
         $params = $_POST;
         $tutkijaid = $_SESSION['user'];
         $attributes = array(
@@ -44,12 +46,14 @@ class TutkimusController extends BaseController{
      
     
     public function edit($tutkimusid) {
+        self::check_logged_in();
         $tutkimus = Tutkimus::find($tutkimusid);
         View::make('/tutkimus/edit.html', array('attributes' => $tutkimus));
     }
     
     
     public function update($tutkimusid) {
+        self::check_logged_in();
         $params = $_POST;
         $attributes = array(
             'tutkimusid' => $tutkimusid,
@@ -70,10 +74,11 @@ class TutkimusController extends BaseController{
     
     
     public function destroy($tutkimusid) {
-            $tutkimus = new Tutkimus(array('tutkimusid' => $tutkimusid));
-            $tutkimus->destroy();
-            
-            Redirect::to('/tutkimus', array('message' => 'Tutkimus poistettu!'));
+        self::check_logged_in();
+        $tutkimus = new Tutkimus(array('tutkimusid' => $tutkimusid));
+        $tutkimus->destroy();
+
+        Redirect::to('/tutkimus', array('message' => 'Tutkimus poistettu!'));
     }
          
 }
