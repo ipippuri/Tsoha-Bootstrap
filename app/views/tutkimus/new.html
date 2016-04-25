@@ -13,7 +13,7 @@
     </div>
     {% endif %}
     
-    <form method="post" action="{{base_path}}/kohde/{{kohdeid}}">
+    <form method="post" action="{{base_path}}/kohde/{{attributes.kohdeid}}">
         <div class="form-group">
             <label> Päivämäärä muodossa 'yyyy-mm-dd'</label>
             <input name="paivamaara" class="form-control" type="date">
@@ -31,7 +31,7 @@
     
         <div class="form-group">
             <button type="submit" class="btn btn-primary"> Tallenna </button>
-            <a class="btn btn-default" href="{{base_path}}/kohde/{{kohdeid}}" role="button"> Peruuta </a>
+            <a class="btn btn-default" href="{{base_path}}/kohde/{{attributes.kohdeid}}" role="button"> Peruuta </a>
         </div> 
     </form>
 

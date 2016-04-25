@@ -15,6 +15,7 @@
       }
     }
 
+    
     public function errors(){
       // Lisätään $errors muuttujaan kaikki virheilmoitukset taulukkona
       $errors = array();
@@ -26,6 +27,7 @@
 
       return $errors;
     }
+    
     
     public function validate_string_length($string, $length, $output) {
         $errors = array();
@@ -39,5 +41,33 @@
         
         return $errors;
     }
+    
+    
+    public function validate_numeric($numeric, $output) {
+        $errors = array();
+        if(!is_numeric($numeric)) {
+            $errors[] = $output . ': Syötä luku.';
+        }
+        return $errors;
+    }
+    
+    
+    public function validate_not_null($string, $output) {
+        $errors = array();
+        if($string == '' || $string == null) {
+            $errors[] = $output . ': Kenttä ei saa olla tyhjä.';
+        }
+        return $errors;
+    }
+    
+    
+    public function validate_max_length($string, $length, $output) {
+        $errors = array();
+        if(strlen($string) > $length) {
+            $errors[] = $output . ': Korkeintaan ' . $length . ' merkkiä.';
+        }
+        return $errors;
+    }
 
+    
   }

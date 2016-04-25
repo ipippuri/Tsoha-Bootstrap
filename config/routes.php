@@ -92,7 +92,7 @@
   });
   
   $routes->get('/tutkimus/:tutkimusid/:nayteid/edit', function($tutkimusid, $nayteid) {
-    NayteController::edit($tutkimusid, $nayteid);
+    NayteController::edit($nayteid);
   });
   
   $routes->post('/tutkimus/:tutkimusid/:nayteid/edit', function($tutkimusid, $nayteid) {

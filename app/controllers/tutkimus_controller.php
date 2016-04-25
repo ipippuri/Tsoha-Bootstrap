@@ -10,7 +10,8 @@ class TutkimusController extends BaseController{
     
     public static function create($kohdeid) {
         self::check_logged_in();
-        View::make('/tutkimus/new.html', array('kohdeid' => $kohdeid));
+        $attributes = array('kohdeid' => $kohdeid);
+        View::make('/tutkimus/new.html', array('attributes' => $attributes));
     }
     
     

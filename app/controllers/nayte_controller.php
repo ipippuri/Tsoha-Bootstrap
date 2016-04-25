@@ -10,7 +10,8 @@ class NayteController extends BaseController{
     
     public function create($tutkimusid) {
         self::check_logged_in();
-        View::make('nayte/new.html', array('tutkimusid' => $tutkimusid));
+        $attributes = array('tutkimusid' => $tutkimusid);
+        View::make('nayte/new.html', array('attributes' => $attributes));
     }
     
     
@@ -41,10 +42,10 @@ class NayteController extends BaseController{
     }
     
     
-    public function edit($tutkimusid, $nayteid) {
+    public function edit($nayteid) {
         self::check_logged_in();
         $nayte = Nayte::find($nayteid);
-        View::make('/nayte/edit.html', array('tutkimusid' => $tutkimusid, 'attributes' => $nayte));
+        View::make('/nayte/edit.html', array('attributes' => $nayte));
     }
     
     
@@ -62,11 +63,15 @@ class NayteController extends BaseController{
             'analyysi' => $params['analyysi']
         );
         
-//        $nayte = new Nayte($attributes);
-//        Kint::dump($attributes);
-//        $nayte->update();
+        $nayte = new Nayte($attributes);
+        $errors = $nayte->errors();
         
-        Redirect::to('/tutkimus/' . $tutkimusid . '/' . $nayteid , array('message' => 'Näytettä on muokattu!'));
+        if(count($errors) == 0) {
+            $nayte->update();
+            Redirect::to('/tutkimus/' . $tutkimusid . '/' . $nayteid , array('message' => 'Näytettä on muokattu!'));
+        } else {
+            View::make('/nayte/edit.html', array('errors' => $errors, 'attributes' => $attributes));
+        }
     }
 
 

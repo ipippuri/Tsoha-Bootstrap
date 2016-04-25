@@ -7,9 +7,10 @@ class Nayte extends BaseModel{
     
     public function __construct($attributes) {
         parent::__construct($attributes);
-        $this->validators = array('validate_nimi', 'validate_leveysaste', 'validate_pituusaste',
+        $this->validators = array('validate_nimi', 'validate_maamerkkitieto', 'validate_leveysaste', 'validate_pituusaste',
             'validate_kuvaus');
     }
+    
     
     public static function find($nayteid) {
         $query = DB::connection()->prepare('SELECT * FROM Nayte WHERE nayteid = :nayteid LIMIT 1');
@@ -50,8 +51,8 @@ class Nayte extends BaseModel{
     
     
     public function update() {
-        $query = DB::connection()->prepare('UPDATE Nayte SET nimi = :nimi, leveysaste = :leveysaste,'
-                . 'pituusaste = :pituusaste, maamerkkitieto = :maamerkkitieto, kuvaus = :kuvaus,'
+        $query = DB::connection()->prepare('UPDATE Nayte SET nimi = :nimi, leveysaste = :leveysaste, '
+                . 'pituusaste = :pituusaste, maamerkkitieto = :maamerkkitieto, kuvaus = :kuvaus, '
                 . 'analyysi = :analyysi WHERE nayteid= :nayteid');
         $query->execute(array('nayteid' => $this->nayteid, 'nimi' => $this->nimi, 'leveysaste' => $this->leveysaste,
             'pituusaste' => $this->pituusaste, 'maamerkkitieto' => $this->maamerkkitieto,
@@ -65,24 +66,30 @@ class Nayte extends BaseModel{
     }
     
     
-    
-    
-    
-    
     public function validate_nimi() {
-        return parent::validate_string_length($this->nimi, 2, 'Nimi');
+        $errors = array();
+        $errors = array_merge($errors, parent::validate_string_length($this->nimi, 2, 'Nimi'));
+        $errors = array_merge($errors, parent::validate_max_length($this->nimi, 50, 'Nimi'));
+        
+        return $errors;
+    }
+    
+    
+    public function validate_maamerkkitieto() {
+        return parent::validate_max_length($this->maamerkkitieto, 150, 'Maamerkkitieto');
     }
     
     public function validate_kuvaus() {
         return parent::validate_string_length($this->kuvaus, 4, 'Kuvaus');
     }
     
+    
     public function validate_leveysaste() {
         $errors = array();
         
-        if($this->leveysaste == '' || $this->leveysaste == null) {
-            $errors[] = 'Leveysaste: Kenttä ei saa olla tyhjä.';
-        }
+        $errors = array_merge($errors, parent::validate_numeric($this->leveysaste, 'Leveysaste'));
+        $errors = array_merge($errors, parent::validate_not_null($this->leveysaste, 'Leveysaste'));
+        
         if($this->leveysaste < -90 || $this->leveysaste > 90) {
             $errors[] = 'Leveysaste: Arvon on oltava välillä (-90, 90).';
         }
@@ -93,12 +100,13 @@ class Nayte extends BaseModel{
         return $errors;
     }
     
+    
     public function validate_pituusaste() {
         $errors = array();
         
-        if($this->pituusaste == '' || $this->pituusaste == null) {
-            $errors[] = 'Pituusaste: Kenttä ei saa olla tyhjä.';
-        }
+        $errors = array_merge($errors, parent::validate_numeric($this->pituusaste, 'Pituusaste')); 
+        $errors = array_merge($errors, parent::validate_not_null($this->pituusaste, 'Pituusaste'));
+        
         if($this->pituusaste < -180 || $this->pituusaste > 180) {
             $errors[] = 'Pituusaste: Arvon on oltava välillä (-180, 180).';
         }

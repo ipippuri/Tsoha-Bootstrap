@@ -111,15 +111,7 @@ class Tutkimus extends BaseModel{
     }
     
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     public function validate_aistivarainen_tieto() {
         $errors = parent::validate_string_length($this->aistivarainen_tieto, 4, 'Aistivarainen tieto');
         return $errors;

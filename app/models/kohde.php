@@ -97,36 +97,27 @@ class Kohde extends BaseModel{
         }
     }
 
+    
     public function destroy() {
         self::destroyTutkimukset();
         $query = DB::connection()->prepare('DELETE FROM Kohde WHERE kohdeid = :kohdeid');
         $query->execute(array('kohdeid' => $this->kohdeid));
     }
 
-
     
     public function validate_nimi() {
         $errors = array();
-        if($this->nimi == '' || $this->nimi == null) {
-            $errors[] = 'Nimi ei saa olla tyhjä.';
-        }
-        
-        if(strlen($this->nimi) < 2) {
-            $errors[] = 'Nimi: Pituus vähintään 2 merkkiä';
-        }
+        $errors = array_merge($errors, parent::validate_string_length($this->nimi, 2, 'Nimi'));
+        $errors = array_merge($errors, parent::validate_max_length($this->nimi, 50, 'Nimi'));
         
         return $errors;
     }
+
     
-        public function validate_paikkakunta() {
+    public function validate_paikkakunta() {
         $errors = array();
-        if($this->paikkakunta == '' || $this->paikkakunta == null) {
-            $errors[] = 'Paikkakunta ei saa olla tyhjä.';
-        }
-        
-        if(strlen($this->paikkakunta) < 2) {
-            $errors[] = 'Paikkakunta: Vähintään 2 merkkiä';
-        }
+        $errors = array_merge($errors, parent::validate_string_length($this->paikkakunta, 2, 'Paikkakunta'));
+        $errors = array_merge($errors, parent::validate_max_length($this->paikkakunta, 50, 'Paikkakunta'));
         
         return $errors;
     }

@@ -13,7 +13,7 @@
     </div>
     {% endif %}
     
-    <form method="post" action="{{base_path}}/tutkimus/{{tutkimusid}}">
+    <form method="post" action="{{base_path}}/tutkimus/{{attributes.tutkimusid}}">
         <div class="form-group">
             <label> Nimi </label>
             <input name="nimi" class="form-control" type="text" value="{{attributes.nimi}}">
@@ -46,7 +46,7 @@
 
         <div class="form-group">
             <button type="submit" class="btn btn-primary"> Tallenna </button>
-            <a class="btn btn-default" href="{{base_path}}/tutkimus/{{tutkimusid}}" role="button"> Peruuta </a>
+            <a class="btn btn-default" href="{{base_path}}/tutkimus/{{attributes.tutkimusid}}" role="button"> Peruuta </a>
         </div>
     </form>
 
