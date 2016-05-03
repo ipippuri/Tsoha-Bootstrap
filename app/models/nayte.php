@@ -2,7 +2,7 @@
 
 class Nayte extends BaseModel{
     public $nayteid, $kohdeid, $tutkimusid, $tutkijaid, 
-            $nimi, $leveysaste, $pituusaste, $maamerkkitieto, $kuvaus, $analyysi,
+            $nimi, $leveysaste, $pituusaste, $maamerkkitieto, $kuvaus, $analyysi, $kayttajatunnus,
             $validators;
     
     public function __construct($attributes) {
@@ -13,7 +13,8 @@ class Nayte extends BaseModel{
     
     
     public static function find($nayteid) {
-        $query = DB::connection()->prepare('SELECT * FROM Nayte WHERE nayteid = :nayteid LIMIT 1');
+        $query = DB::connection()->prepare('SELECT Nayte.*, Tutkija.kayttajatunnus FROM Nayte '
+                . 'JOIN Tutkija ON Nayte.tutkijaid = Tutkija.tutkijaid WHERE nayteid = :nayteid LIMIT 1');
         $query->execute(array('nayteid' => $nayteid));
         $row = $query->fetch();
         
@@ -28,6 +29,7 @@ class Nayte extends BaseModel{
                 'maamerkkitieto' => $row['maamerkkitieto'],
                 'kuvaus' => $row['kuvaus'],
                 'analyysi' => $row['analyysi'],
+                'kayttajatunnus' => $row['kayttajatunnus']
             ));
             return $nayte;
         }
@@ -89,14 +91,12 @@ class Nayte extends BaseModel{
         
         $errors = array_merge($errors, parent::validate_numeric($this->leveysaste, 'Leveysaste'));
         $errors = array_merge($errors, parent::validate_not_null($this->leveysaste, 'Leveysaste'));
+        $errors = array_merge($errors, parent::validate_max_length($this->leveysaste, 7, 'Leveysaste'));
         
         if($this->leveysaste < -90 || $this->leveysaste > 90) {
             $errors[] = 'Leveysaste: Arvon on oltava välillä (-90, 90).';
         }
-        if (strlen($this->leveysaste) > 7) {
-            $errors[] = 'Leveysaste: Korkeintaan 7 merkkiä';
-        }
-        
+                
         return $errors;
     }
     
@@ -106,14 +106,13 @@ class Nayte extends BaseModel{
         
         $errors = array_merge($errors, parent::validate_numeric($this->pituusaste, 'Pituusaste')); 
         $errors = array_merge($errors, parent::validate_not_null($this->pituusaste, 'Pituusaste'));
+        $errors = array_merge($errors, parent::validate_max_length($this->pituusaste, 7, 'Pituusaste'));
+
         
         if($this->pituusaste < -180 || $this->pituusaste > 180) {
             $errors[] = 'Pituusaste: Arvon on oltava välillä (-180, 180).';
         }
-        if (strlen($this->pituusaste) > 7) {
-            $errors[] = 'Pituusaste: Korkeintaan 7 merkkiä';
-        }
-        
+               
         return $errors;
     }
     

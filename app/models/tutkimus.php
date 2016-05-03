@@ -2,12 +2,12 @@
 
 class Tutkimus extends BaseModel{
     public $tutkimusid, $kohdeid, $kohteenNimi, $kohteenPaikkakunta, $tutkijaid, 
-            $paivamaara, $aistivarainen_tieto, $mittaustieto, $nayteet=array(),
-            $validators;
+            $paivamaara, $aistivarainen_tieto, $mittaustieto, $tutkijanKayttajatunnus,
+            $nayteet, $validators;
     
     public function __construct($attributes) {
         parent::__construct($attributes);
-        $this->validators = array('validate_aistivarainen_tieto', 'validate_mittaustieto');
+        $this->validators = array('validate_date', 'validate_aistivarainen_tieto', 'validate_mittaustieto');
     }
 
     
@@ -36,8 +36,9 @@ class Tutkimus extends BaseModel{
     
     
     public static function find($tutkimusid) {
-        $query = DB::connection()->prepare('SELECT * FROM Tutkimus LEFT JOIN Kohde '
-                . 'ON Kohde.kohdeid=Tutkimus.kohdeid WHERE tutkimusid = :tutkimusid');
+        $query = DB::connection()->prepare('SELECT Tutkimus.*, Kohde.*, Tutkija.kayttajatunnus FROM Tutkimus JOIN Kohde '
+                . 'ON Kohde.kohdeid=Tutkimus.kohdeid JOIN Tutkija ON Tutkimus.tutkijaid = Tutkija.tutkijaid '
+                . 'WHERE tutkimusid = :tutkimusid');
         $query->execute(array('tutkimusid' => $tutkimusid));
         $row = $query->fetch();
         
@@ -47,7 +48,7 @@ class Tutkimus extends BaseModel{
                 'kohdeid' => $row['kohdeid'],
                 'kohteenNimi' => $row['nimi'],
                 'kohteenPaikkakunta' => $row['paikkakunta'],
-                'tutkijaid' => $row['tutkijaid'],
+                'tutkijanKayttajatunnus' => $row['kayttajatunnus'],
                 'paivamaara' => $row['paivamaara'],
                 'aistivarainen_tieto' => $row['aistivarainen_tieto'],
                 'mittaustieto' => $row['mittaustieto']
@@ -92,9 +93,9 @@ class Tutkimus extends BaseModel{
     
     
     public function update() {
-        $query = DB::connection()->prepare('UPDATE Tutkimus SET aistivarainen_tieto = :aistivarainen_tieto, '
+        $query = DB::connection()->prepare('UPDATE Tutkimus SET paivamaara = :paivamaara, aistivarainen_tieto = :aistivarainen_tieto, '
                 . 'mittaustieto = :mittaustieto WHERE tutkimusid = :tutkimusid');
-        $query->execute(array('tutkimusid' => $this->tutkimusid, 'aistivarainen_tieto' => $this->aistivarainen_tieto, 'mittaustieto' => $this->mittaustieto));
+        $query->execute(array('tutkimusid' => $this->tutkimusid, 'paivamaara' => $this->paivamaara, 'aistivarainen_tieto' => $this->aistivarainen_tieto, 'mittaustieto' => $this->mittaustieto));
     }
     
     
@@ -119,6 +120,16 @@ class Tutkimus extends BaseModel{
 
     public function validate_mittaustieto() {
         $errors = parent::validate_string_length($this->mittaustieto, 4, 'Mittaustieto');
+        return $errors;
+    }
+    
+    public function validate_date() {
+        $errors = array();
+        $date = DateTime::createFromFormat('Y-m-d', $this->paivamaara);
+        $date_errors = DateTime::getLastErrors();
+        if ($date_errors['warning_count'] + $date_errors['error_count'] > 0) {
+            $errors[] = 'Päivämäärä: Virheellinen päivämäärä.';
+        }
         return $errors;
     }
 }

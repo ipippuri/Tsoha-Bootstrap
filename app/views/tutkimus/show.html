@@ -15,7 +15,7 @@
     <br>
     
     <ul>
-        <li> <strong> Tutkija: </strong> <a href="#"> Tutkija {{tutkimus.tutkijaid}} </a> </li>
+        <li> <strong> Tutkija: </strong> {{tutkimus.tutkijanKayttajatunnus}} </li>
         <li> <strong> Päivämäärä: </strong> {{tutkimus.paivamaara}} </li>
     </ul>
     
@@ -29,7 +29,9 @@
     
     <a href="{{base_path}}/tutkimus/{{tutkimus.tutkimusid}}/new" class="btn btn-default"> Lisää näyte </a> <br>
     
+    
     <h3>Näytteet</h3>
+    
     <table class="table table-striped table-bordered">
         <thead>
             <tr>

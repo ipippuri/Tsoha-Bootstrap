@@ -16,6 +16,11 @@
     <form method="post" action="{{base_path}}/tutkimus/{{attributes.tutkimusid}}/edit">
     
         <div class="form-group">
+            <label> Päivämäärä  </label>
+            <input name="paivamaara" class="form-control" value="{{attributes.paivamaara}}">
+        </div>
+
+        <div class="form-group">
             <label> Aistinvarainen tieto  </label>
             <textarea name="aistivarainen_tieto" class="form-control">{{attributes.aistivarainen_tieto}}</textarea>
         </div>

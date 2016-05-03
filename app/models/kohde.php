@@ -55,7 +55,7 @@ class Kohde extends BaseModel{
     public static function findWithTutkimukset($kohdeid) {
         $kohde = Kohde::find($kohdeid);
         
-        $query = DB::connection()->prepare('SELECT tutkimusid, tutkijaid, paivamaara '
+        $query = DB::connection()->prepare('SELECT tutkimusid, paivamaara '
                 . 'FROM Tutkimus WHERE kohdeid= :kohdeid ORDER BY paivamaara DESC');
         $query->execute(array('kohdeid' => $kohdeid ));
         
@@ -65,7 +65,6 @@ class Kohde extends BaseModel{
         foreach ($rows as $row) {
             $tutkimukset[] = new Tutkimus(array(
                 'tutkimusid' => $row['tutkimusid'],
-                'tutkijaid' => $row['tutkijaid'],
                 'paivamaara' => $row['paivamaara'],
             ));
         }

@@ -58,6 +58,7 @@ class TutkimusController extends BaseController{
         $params = $_POST;
         $attributes = array(
             'tutkimusid' => $tutkimusid,
+            'paivamaara' => $params['paivamaara'],
             'aistivarainen_tieto' => $params['aistivarainen_tieto'],
             'mittaustieto' => $params['mittaustieto']
         );

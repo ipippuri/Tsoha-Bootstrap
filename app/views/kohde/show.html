@@ -21,7 +21,6 @@
             <tr>
                 <th> Tutkimuksen id </th>
                 <th> Päivämäärä </th>
-                <th> Tutkija </th>
             </tr>
         </thead>
 
@@ -30,8 +29,6 @@
             <tr>
                 <td> <a href="{{base_path}}/tutkimus/{{tutkimus.tutkimusid}}"> {{tutkimus.tutkimusid}} </a></td>
                 <td> {{tutkimus.paivamaara}} </td>
-                <td><a href="#"> {{tutkimus.tutkijaid}} </a></td>
-
             </tr>
             {% endfor %}
         </tbody>
