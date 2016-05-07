@@ -12,7 +12,8 @@ class Tutkimus extends BaseModel{
 
     
     public static function all() {
-        $query = DB::connection()->prepare('SELECT * FROM Tutkimus 
+        $query = DB::connection()->prepare('SELECT Tutkimus.tutkimusid, Tutkimus.paivamaara,
+            Kohde.nimi, Kohde.paikkakunta FROM Tutkimus 
             LEFT JOIN Kohde on Kohde.kohdeid=Tutkimus.kohdeid ORDER BY paivamaara DESC');
         $query->execute();
         
@@ -24,10 +25,7 @@ class Tutkimus extends BaseModel{
                 'tutkimusid' => $row['tutkimusid'],
                 'kohteenNimi' => $row['nimi'],
                 'kohteenPaikkakunta' => $row['paikkakunta'],
-                'tutkijaid' => $row['tutkijaid'],
                 'paivamaara' => $row['paivamaara'],
-                'aistivarainen_tieto' => $row['aistivarainen_tieto'],
-                'mittaustieto' => $row['mittaustieto'],
             ));
         }
         
