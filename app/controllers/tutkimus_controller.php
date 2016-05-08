@@ -11,14 +11,14 @@ class TutkimusController extends BaseController{
     public static function create($kohdeid) {
         self::check_logged_in();
         $attributes = array('kohdeid' => $kohdeid);
-        View::make('/tutkimus/new.html', array('attributes' => $attributes));
+        View::make('tutkimus/new.html', array('attributes' => $attributes));
     }
     
     
     public static function show($tutkimusid) {
         self::check_logged_in();
         $tutkimus = Tutkimus::findWithNaytteet($tutkimusid);
-        View::make('/tutkimus/show.html', array('tutkimus' => $tutkimus));
+        View::make('tutkimus/show.html', array('tutkimus' => $tutkimus));
     }
     
     
@@ -41,7 +41,7 @@ class TutkimusController extends BaseController{
            $tutkimus->save();        
             Redirect::to('/kohde/' . $kohdeid, array('message' => 'Tutkimus lisätty!'));
         } else {
-            View::make('/tutkimus/new.html', array('errors' => $errors, 'attributes' => $attributes));
+            View::make('tutkimus/new.html', array('errors' => $errors, 'attributes' => $attributes));
         }
     }
      
@@ -49,7 +49,7 @@ class TutkimusController extends BaseController{
     public function edit($tutkimusid) {
         self::check_logged_in();
         $tutkimus = Tutkimus::find($tutkimusid);
-        View::make('/tutkimus/edit.html', array('attributes' => $tutkimus));
+        View::make('tutkimus/edit.html', array('attributes' => $tutkimus));
     }
     
     
@@ -70,7 +70,7 @@ class TutkimusController extends BaseController{
             $tutkimus->update();
             Redirect::to('/tutkimus/' . $tutkimusid, array('message' => 'Tutkimus päivitetty!'));
         } else {
-            View::make('/tutkimus/edit.html', array('errors' => $errors, 'attributes' => $attributes));
+            View::make('tutkimus/edit.html', array('errors' => $errors, 'attributes' => $attributes));
         }
     }
     

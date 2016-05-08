@@ -37,7 +37,7 @@ class NayteController extends BaseController{
             $nayte->save();
             Redirect::to('/tutkimus/' . $tutkimusid . '/' . $nayte->nayteid , array('message' => 'Näyte lisätty!'));     
         } else {
-            View::make('/nayte/new.html', array('errors' => $errors, 'attributes' => $attributes));
+            View::make('nayte/new.html', array('errors' => $errors, 'attributes' => $attributes));
         }
     }
     
@@ -45,7 +45,7 @@ class NayteController extends BaseController{
     public function edit($nayteid) {
         self::check_logged_in();
         $nayte = Nayte::find($nayteid);
-        View::make('/nayte/edit.html', array('attributes' => $nayte));
+        View::make('nayte/edit.html', array('attributes' => $nayte));
     }
     
     
@@ -70,7 +70,7 @@ class NayteController extends BaseController{
             $nayte->update();
             Redirect::to('/tutkimus/' . $tutkimusid . '/' . $nayteid , array('message' => 'Näytettä on muokattu!'));
         } else {
-            View::make('/nayte/edit.html', array('errors' => $errors, 'attributes' => $attributes));
+            View::make('nayte/edit.html', array('errors' => $errors, 'attributes' => $attributes));
         }
     }
 

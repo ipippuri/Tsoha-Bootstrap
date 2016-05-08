@@ -14,7 +14,7 @@ class Tutkimus extends BaseModel{
     public static function all() {
         $query = DB::connection()->prepare('SELECT Tutkimus.tutkimusid, Tutkimus.paivamaara,
             Kohde.nimi, Kohde.paikkakunta FROM Tutkimus 
-            LEFT JOIN Kohde on Kohde.kohdeid=Tutkimus.kohdeid ORDER BY paivamaara DESC');
+            JOIN Kohde ON Kohde.kohdeid=Tutkimus.kohdeid ORDER BY paivamaara DESC');
         $query->execute();
         
         $rows = $query->fetchAll();
@@ -36,7 +36,7 @@ class Tutkimus extends BaseModel{
     public static function find($tutkimusid) {
         $query = DB::connection()->prepare('SELECT Tutkimus.*, Kohde.*, Tutkija.kayttajatunnus FROM Tutkimus JOIN Kohde '
                 . 'ON Kohde.kohdeid=Tutkimus.kohdeid JOIN Tutkija ON Tutkimus.tutkijaid = Tutkija.tutkijaid '
-                . 'WHERE tutkimusid = :tutkimusid');
+                . 'WHERE tutkimusid = :tutkimusid LIMIT 1');
         $query->execute(array('tutkimusid' => $tutkimusid));
         $row = $query->fetch();
         

@@ -4,8 +4,7 @@ class KohdeController extends BaseController{
     public static function index() {
         self::check_logged_in();
         $kohteet = Kohde::all();
-        $user = parent::get_user_logged_in();
-        View::make('kohde/index.html', array('kohteet' => $kohteet, 'user_logged_in' => $user));
+        View::make('kohde/index.html', array('kohteet' => $kohteet));
     }
     
     
@@ -18,7 +17,7 @@ class KohdeController extends BaseController{
     public static function show($kohdeid) {
         self::check_logged_in();
         $kohde = Kohde::findWithTutkimukset($kohdeid);
-        View::make('/kohde/show.html', array('kohde' => $kohde));
+        View::make('kohde/show.html', array('kohde' => $kohde));
     }
 
 

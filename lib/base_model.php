@@ -36,7 +36,7 @@
         }
         
         if(strlen($string) < $length) {
-            $errors[] = $output . ': Vähintään ' . $length . ' merkkiä';
+            $errors[] = $output . ': Vähintään ' . $length . ' merkkiä.';
         }
         
         return $errors;

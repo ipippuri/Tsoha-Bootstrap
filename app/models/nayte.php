@@ -2,7 +2,7 @@
 
 class Nayte extends BaseModel{
     public $nayteid, $kohdeid, $tutkimusid, $tutkijaid, 
-            $nimi, $leveysaste, $pituusaste, $maamerkkitieto, $kuvaus, $analyysi, $kayttajatunnus,
+            $nimi, $leveysaste, $pituusaste, $maamerkkitieto, $kuvaus, $analyysi, $tutkijanKayttajatunnus,
             $validators;
     
     public function __construct($attributes) {
@@ -29,7 +29,7 @@ class Nayte extends BaseModel{
                 'maamerkkitieto' => $row['maamerkkitieto'],
                 'kuvaus' => $row['kuvaus'],
                 'analyysi' => $row['analyysi'],
-                'kayttajatunnus' => $row['kayttajatunnus']
+                'tutkijanKayttajatunnus' => $row['kayttajatunnus']
             ));
             return $nayte;
         }
